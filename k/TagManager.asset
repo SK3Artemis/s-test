@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - reserved3
+  - Water
+  - UI
+  - reserved6
+  - reserved7
+  - Interactive
+  - Player
+  - PlayerLocal
+  - Environment
+  - UiMenu
+  - Pickup
+  - PickupNoEnvironment
+  - StereoLeft
+  - StereoRight
+  - Walkthrough
+  - MirrorReflection
+  - InternalUI
+  - HardwareObjects
+  - reserved4
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - AVATAR
+  - SHADER
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Default
+    uniqueID: 1
+    locked: 0
+  - name: Default
+    uniqueID: 32765
+    locked: 0
+  - name: Default
+    uniqueID: 98295
+    locked: 0
+  - name: Default
+    uniqueID: 294885
+    locked: 0
+  - name: Default
+    uniqueID: 884655
+    locked: 0
+  - name: Default
+    uniqueID: 2653965
+    locked: 0
+  - name: Default
+    uniqueID: 7961895
+    locked: 0
+  - name: Default
+    uniqueID: 23885685
+    locked: 0
+  - name: Default
+    uniqueID: 71657055
+    locked: 0
+  - name: Default
+    uniqueID: 214971165
+    locked: 0
+  - name: Default
+    uniqueID: 644913495
+    locked: 0
+  - name: Default
+    uniqueID: 1934740485
+    locked: 0
+  - name: AVATAR
+    uniqueID: 98296
+    locked: 0
+  - name: SHADER
+    uniqueID: 98297
+    locked: 0
