@@ -54,8 +54,9 @@
 ._46696d17714f10ab-wanderingCubes._46696d17714f10ab-item{background:var(--hsl);}
 ._46696d17714f10ab-path{stroke:var(--hsl);}
 ._49fc18ba07c5025f-header,._49fc18ba07c5025f-content,._49fc18ba07c5025f-footer{background:var(--bg);} 
-._740174f3d6a2c8fe-channelTextArea{background-color:var(--bg);box-shadow: 0 0 0 2px var(--hsl);}
-._740174f3d6a2c8fe-scrollableContainer{background-color:var(--bg);}
+._740174f3d6a2c8fe-channelTextArea:focus-within{border-color:rgba(0,0,0,0);box-shadow:0 0 0 2px var(--hsl);}
+._740174f3d6a2c8fe-channelTextArea{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);}
+._740174f3d6a2c8fe-scrollableContainer{background-color:var(--bg);background:rgba(0,0,0,0);}
 .f75fb00fb7356cbe-chat{background:rgba(0,0,0,0);}
 /* vencord specific stuff */
 .vc-card-base{background:var(--bg);border:none}
