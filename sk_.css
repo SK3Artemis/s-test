@@ -3,15 +3,17 @@
  * @author SK_Artemis
  * @description Interesting....
  * @website /vanityurl/dotcom/steakpants/flour/flower/index11.html
-*/ /* inspired by (pasted) from cv5/cv6/cv7/simple color/gradients for cv6/kaleidoscope */
+*/ /* Relies on Vencord's ThemeAttributes Plugin. Enable it Please.... */
+/* inspired by (pasted from) cv5/cv6/cv7/simple color/gradients for cv6/kaleidoscope */
 :root {
 	--sk: #7200ff;	/* sk color */
-	--hue: 267;		/* main color hsl */
+	--hue: 267;		/* hue (hsl) */
 	--sat: 1;		/* saturation */
-	--light: .5%;	/* light */
-	--alpha: 0.6;	/* opacity */
 	--shade: 100%;	/* shading */
+	--alpha: 0.6;	/* opacity */
+	--light: .5%;	/* light */
 	--image: url(https://sk3artemis.github.io/s-test/images/Untitled.png);
+	--bg-0: rgba(0,0,0,0);	/* bg shade thingy */
 	--bg-pos: center;	/* background position */
 	--bg-size: cover;	/* background size */
 	--bg-attach: fixed;	/* idk what this is called */
@@ -25,9 +27,10 @@
 	--dir: 130deg;		/* angle of gradient */
 } /* wow crazie theme changin */
 .theme-light,.theme-dark {
-	--bg: hsla(var(--hue), calc(var(--sat) * 50%), var(--light), var(--alpha));	/* hue shift from cv7 */
+	--bg: hsla(var(--hue), calc(var(--sat) * 50%), var(--light), var(--alpha));	/* hue shift i guess....  */
+	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/alpha);		/* background shade stuff */
 	--hsl-bg: hsl(from var(--light) h calc(var(--sat, 1) * s) l/alpha);			/* brightness i guess.... */
-	--hsl: hsl(from var(--sk) h calc(var(--sat, 1) * s) l/alpha);				/* accent color (might not work) */
+	--hsl: hsl(from var(--sk) h calc(var(--sat, 1) * s) l/alpha);				/* sk color changin wowie */
 	--background-surface-highest: var(--bg);	/* simple set background color */
 	--background-surface-higher: var(--bg);		/* simple set background color */
 	--background-surface-high: var(--bg);		/* simple set background color */
@@ -49,15 +52,16 @@
 .a21736575ea33af0-videoGrid{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
 .a3002d7de5be5280-app{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;}
 .a2f5142ba8328dfd-container{background:var(--hsl-bg);}
-.ef3116c2da186559-wrapper{margin-bottom:var(--app-height);background:rgba(0,0,0,0);padding-top:10px;}
+.ef3116c2da186559-wrapper{margin-bottom:var(--app-height);background:var(--bg-0);padding-top:10px;}
+.f75fb00fb7356cbe-chatContent,.f35c3c1aaf31dfd5-scroller{background: hsl(from var(--bg-shade) h s l/calc(var(--shade) * 0.4));}
+.f75fb00fb7356cbe-chat{background:var(--bg-0);}
 ._160d8e55254637e5-app{background:hsl(from var(--hsl-bg) h s l/calc(var(--sat) * 0.1));}
 ._46696d17714f10ab-wanderingCubes._46696d17714f10ab-item{background:var(--hsl);}
 ._46696d17714f10ab-path{stroke:var(--hsl);}
 ._49fc18ba07c5025f-header,._49fc18ba07c5025f-content,._49fc18ba07c5025f-footer{background:var(--bg);} 
-._740174f3d6a2c8fe-channelTextArea:focus-within{border-color:rgba(0,0,0,0);box-shadow:0 0 0 2px var(--hsl);}
+._740174f3d6a2c8fe-channelTextArea:focus-within{border-color:var(--bg-0);box-shadow:0 0 0 2px var(--hsl);}
 ._740174f3d6a2c8fe-channelTextArea{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);}
-._740174f3d6a2c8fe-scrollableContainer{background-color:var(--bg);background:rgba(0,0,0,0);}
-.f75fb00fb7356cbe-chat{background:rgba(0,0,0,0);}
+._740174f3d6a2c8fe-scrollableContainer{background-color:var(--bg);background:var(--bg-0);}
 /* vencord specific stuff */
 .vc-card-base{background:var(--bg);border:none}
 .vc-addon-card{background:var(--bg);border:none}
