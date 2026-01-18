@@ -73,8 +73,8 @@
 ._2b1f52e43a8f1c02-textBadge{display:none;}
 ._4ed1af9a212b8f4f-marketingBadgeTooltip{display:none;}
 /* !SK_ in top left and SK logo in settings version info */
-.c38106a3f0c3ca76-leading::before{content:"!SK_";position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--text-default);order:2;filter:drop-shadow(0 0 5px var(--hsl));}
-._2debea61131de3de-clickable::before{content:var(--sk_);color:var(--text-muted);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
+.c38106a3f0c3ca76-leading::before{content:"!SK_";position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--sk);order:2;filter:drop-shadow(0 0 5px var(--hsl));}
+._2debea61131de3de-clickable::before{content:var(--sk_);color:var(--sk);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
 /* some other changes/fixes (small user thingy) */
 .visual-refresh section._5e434347c823b592-panels{
 left:calc(var(--custom-guild-list-width) + var(--space-xs));
