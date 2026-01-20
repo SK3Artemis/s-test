@@ -15,7 +15,7 @@
 	--image: url(https://sk3artemis.github.io/s-test/images/Untitled.png);
 	--bg-0: rgba(0,0,0,0);	/* bg shade thingy */
 	--bg-pos: center;	/* background position */
-	--bg-size: cover;	/* background size */
+	--bg-size: cover;	/* background size changin */
 	--bg-attach: fixed;	/* idk what this is called */
 	--bg-filter: saturate(calc(var(--sat, 1) * 1)); /* filtering shit */
 	--gif-picker: 0.125 / 1;	/* resize gif picker aspect ratio */
@@ -25,19 +25,19 @@
 	--sk_: "░██████╗██╗░░██ ██╔════╝██║░██║ ╚█████╗░█████═╝ ░╚═══██╗██╔═██╗ ██████╔╝██║░╚██ ╚═════╝░╚═╝░░═╝ ";
 	--acc: #1e63b3;		/* gradient color accent */
 	--dir: 130deg;		/* angle of gradient */
-} /* wow crazie theme changin */
+} /* wowie crazie theme changin */
 .theme-light,.theme-dark {
 	--bg: hsla(var(--hue), calc(var(--sat) * 50%), var(--light), var(--alpha));	/* hue shift i guess....  */
-	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/alpha);		/* background shade stuff */
-	--hsl-bg: hsl(from var(--light) h calc(var(--sat, 1) * s) l/alpha);			/* brightness i guess.... */
-	--hsl: hsl(from var(--sk) h calc(var(--sat, 1) * s) l/alpha);				/* sk color changin wowie */
-	--background-surface-highest: var(--bg);	/* simple set background color */
-	--background-surface-higher: var(--bg);		/* simple set background color */
-	--background-surface-high: var(--bg);		/* simple set background color */
-	--background-base-lowest: var(--bg);		/* simple set background color */
-	--background-base-lower: var(--bg);			/* simple set background color */
-	--background-base-low: var(--bg);			/* simple set background color */
-	--background-floating: var(--bg) !important;/* simple set background color */
+	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/alpha);			/* background shade stuff */
+	--hsl-bg: hsl(from var(--light) h calc(var(--sat, 1) * s) l/alpha);			/* something brightness.. */
+	--hsl: hsl(from var(--sk) h calc(var(--sat, 1) * s) l/alpha);				/* sk color changin stuff */
+	--background-surface-highest: var(--bg);	/* set background color */
+	--background-surface-higher: var(--bg);		/* set background color */
+	--background-surface-high: var(--bg);		/* set background color */
+	--background-base-lowest: var(--bg);		/* set background color */
+	--background-base-lower: var(--bg);			/* set background color */
+	--background-base-low: var(--bg);			/* set background color */
+	--background-floating: var(--bg) !important;/* set background color */
 	--text-link: var(--hsl);	/* link color */
 	/* SET DEFAULTS */
 	--font-primary: var(--main-font);
@@ -61,7 +61,7 @@
 ._49fc18ba07c5025f-header,._49fc18ba07c5025f-content,._49fc18ba07c5025f-footer{background:var(--bg);} 
 ._740174f3d6a2c8fe-channelTextArea:focus-within{border-color:var(--bg-0);box-shadow:0 0 0 2px var(--hsl);}
 ._740174f3d6a2c8fe-channelTextArea{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);}
-._740174f3d6a2c8fe-scrollableContainer{background-color:var(--bg);background:var(--bg-0);}
+._740174f3d6a2c8fe-scrollableContainer{background-color:var(--bg);}
 /* vencord specific stuff */
 .vc-card-base{background:var(--bg);border:none}
 .vc-addon-card{background:var(--bg);border:none}
@@ -145,3 +145,4 @@ nav._5e434347c823b592-panels{margin-bottom:0!important;}
 .b26b790fd1005393-mediaBarWrapper,.b26b790fd1005393-mediaBarProgress,.b26b790fd1005393-buffer{border-radius: 3px;}
 ._2b1f52e43a8f1c02-numberBadge,._2b1f52e43a8f1c02-textBadge{box-shadow: none !important;}
 .b26b790fd1005393-fakeEdges:before,.b26b790fd1005393-fakeEdges:after{content: unset;}
+/* idk just add your css down here, or somewhere else idc.... */
