@@ -5,7 +5,10 @@
  * @website /vanityurl/dotcom/steakpants/flour/flower/index11.html
 */ /* Relies on Vencord's ThemeAttributes Plugin. Enable it Please.... */
 /* inspired by (pasted from) cv5/cv6/cv7/simple color/gradients for cv6/kaleidoscope */
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Coda|BioRhyme|Share+Tech+Mono&subset=latin-ext');
 :root {
+	--v: "v1.8";	/* version */
 	--sk: #7200ff;	/* sk color */
 	--hue: 267;		/* hue (hsl) */
 	--sat: 1;		/* saturation */
@@ -13,11 +16,11 @@
 	--alpha: 0.6;	/* opacity */
 	--light: .5%;	/* light */
 	--image: url(https://sk3artemis.github.io/s-test/images/Untitled.png);
-	--bg-0: rgba(0,0,0,0);	/* bg shade thingy */
 	--bg-pos: center;	/* background position */
 	--bg-size: cover;	/* background size changin */
 	--bg-attach: fixed;	/* idk what this is called */
 	--bg-filter: saturate(calc(var(--sat, 1) * 1)); /* filtering shit */
+	--bg-0: rgba(0,0,0,0);	/* bg shade thingy (don't change pls) */
 	--gif-picker: 0.125 / 1;	/* resize gif picker aspect ratio */
 	--normal-text: #d8d8db;		/* text coloring */
 	--muted-text: #aeaeb4;		/* text coloring */
@@ -26,9 +29,9 @@
 	--acc: #1e63b3;		/* gradient color accent */
 	--dir: 130deg;		/* angle of gradient */
 } /* wowie crazie theme changin */
-.theme-light,.theme-dark {
+.theme-dark,.theme-light{
 	--bg: hsla(var(--hue), calc(var(--sat) * 50%), var(--light), var(--alpha));	/* hue shift i guess....  */
-	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/alpha);			/* background shade stuff */
+	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/calc(var(--shade) * 0.4));	/* background shade stuff */
 	--hsl-bg: hsl(from var(--light) h calc(var(--sat, 1) * s) l/alpha);			/* something brightness.. */
 	--hsl: hsl(from var(--sk) h calc(var(--sat, 1) * s) l/alpha);				/* sk color changin stuff */
 	--background-surface-highest: var(--bg);	/* set background color */
@@ -45,52 +48,56 @@
 	--text-default: hsl(from var(--normal-text) h calc(var(--sat, 1) * s) l/alpha);
 	--text-muted: hsl(from var(--muted-text) h calc(var(--sat, 1) * s) l/alpha);
 } /* background css from ClearVisionV67 */
-:is(html,body,._51fd70792ee2e563-appMount){background:none;}
-:is(._49fc18ba07c5025f-root,._8a031a135bfcb9ba-container){background:var(--bg);border:none;box-shadow:none;}
-._960e4207cea8323e-bg{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:-1;}
-._6981dc6d72610110-root{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
-.a21736575ea33af0-videoGrid{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
-.a3002d7de5be5280-app{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;}
-.a2f5142ba8328dfd-container{background:var(--hsl-bg);}
-.ef3116c2da186559-wrapper{margin-bottom:var(--app-height);background:var(--bg-0);padding-top:10px;}
-.f75fb00fb7356cbe-chatContent,.f35c3c1aaf31dfd5-scroller{background: hsl(from var(--bg-shade) h s l/calc(var(--shade) * 0.4));}
-.f75fb00fb7356cbe-chat{background:var(--bg-0);}
-._160d8e55254637e5-app{background:hsl(from var(--hsl-bg) h s l/calc(var(--sat) * 0.1));}
-._46696d17714f10ab-wanderingCubes._46696d17714f10ab-item{background:var(--hsl);}
-._46696d17714f10ab-path{stroke:var(--hsl);}
-._49fc18ba07c5025f-header,._49fc18ba07c5025f-content,._49fc18ba07c5025f-footer{background:var(--bg);} 
-._740174f3d6a2c8fe-channelTextArea:focus-within{border-color:var(--bg-0);box-shadow:0 0 0 2px var(--hsl);}
-._740174f3d6a2c8fe-channelTextArea{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);}
-._740174f3d6a2c8fe-scrollableContainer{background-color:var(--bg);}
+:is(html,body,.appMount_51fd7){background:none;}
+:is(.root_bfe55a,.container__5e434){background:var(--bg-0);border:none;box-shadow:none;}
+.bg__960e4{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:-1;}
+.root_bfe55a{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
+.sidebar__5e434{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
+.videoGrid_a21736{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
+.app_a3002d{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;}
+.app__160d8{background:hsl(from var(--hsl-bg) h s l/calc(var(--sat) * 0.1));}
+.wrapper_ef3116{margin-bottom:var(--app-height);background:var(--bg-0);padding-top:10px;}
+.header__49fc1,.content__49fc1,.footer__49fc1{background:var(--bg-0);}
+.wanderingCubes__46696 .item__46696{background:var(--hsl);}
+.path__46696{stroke:var(--hsl);}
+.chat_f75fb0{background:var(--bg-0);}
+.chatContent_f75fb0,.scroller__99e7c{background: hsl(from var(--bg-shade) h s l/calc(var(--shade) * 0.4));}
+.chatContent_f75fb0{background:var(--bg-0);}
+.content__5e434{background:var(--bg);} 
+.channelTextArea__74017:focus-within{border-color:var(--bg-0);box-shadow:0 0 0 2px var(--hsl);}
+.channelTextArea__74017{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);}
+.scrollableContainer__74017{background-color:var(--bg);}
+.container_a2f514{background:var(--hsl-bg);}
 /* vencord specific stuff */
-.vc-card-base{background:var(--bg);border:none}
-.vc-addon-card{background:var(--bg);border:none}
-.vc-btn-primary{background:var(--bg);border:none}
-.vc-settings-quickActions-pill{background:var(--bg);}
+.vc-card-base{background:var(--bg);border:none;}
+.vc-addon-card{background:var(--bg);border:none;}
+.vc-btn-primary{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.vc-settings-quickActions-pill{background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
+.vc-plugin-ui-elements-modal-content{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
 .vc-switch-container.vc-switch-checked{background:var(--hsl)!important;}
 .vc-switch-container{background:hsl(from var(--hsl)h s l/0.2)!important;}
 .vc-notification-root{background:var(--bg);}
 /* adblock i guess.... */
-.d6f39bdbd19328a0-popover{display:none;}
-.a230e00e14310f70-wrapper{display:none;}
-._4ed1af9a212b8f4f-newBadge{display:none;}
-._2b1f52e43a8f1c02-textBadge{display:none;}
-._4ed1af9a212b8f4f-marketingBadgeTooltip{display:none;}
+.shopMarketingTooltipContent__4ed1a{display:none;}
+.marketingButtonBackgroundNew__4ed1a,.newBadge__4ed1a{display:none;}
+.vc-card-base.vc-card-normal.vc-special-card.vc-special-card-special{display:none;} /* vencord donate banner in settings */
 /* !SK_ in top left and SK logo in settings version info */
-.c38106a3f0c3ca76-leading::before{content:"!SK_";position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--sk);order:2;filter:drop-shadow(0 0 5px var(--hsl));}
-._2debea61131de3de-clickable::before{content:var(--sk_);color:var(--sk);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
+.leading_c38106::before{content:"!SK_";position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--sk);order:2;filter:drop-shadow(0 0 5px var(--hsl));}
+.leading_c38106::after{content:var(--v);position:static;margin-top:-5px;font-size:12px;font-weight:600;color:var(--text-muted);order:3;font-family:var(--font-primary);}
+.clickable__2debe::before{content:var(--sk_);color:var(--sk);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
 /* some other changes/fixes (small user thingy) */
-.visual-refresh section._5e434347c823b592-panels{
+.visual-refresh section.panels__5e434{
 left:calc(var(--custom-guild-list-width) + var(--space-xs));
 width:calc(100% - var(--custom-guild-list-width) - var(--space-xs)*2);
-box-sizing:content-box;.e131a99484292a19-wrapper button{padding: 0;}}
-nav._5e434347c823b592-panels{margin-bottom:0!important;}
-._5e434347c823b592-panels:after{display:none;}
+box-sizing:content-box;}
+nav.panels__5e434{margin-bottom:0!important;}
+.panels__5e434:after{display:none;}
+.wrapper_e131a9 button{padding: 0;}
 /* gif picker resizing and transparent gif favorite button */
-[class*="_740174f3d6a2c8fe-expressionPickerPositionLayer"] [class*="_084343c4f11eaaab-positionContainer"]{height:calc(75vh - 100px);}
-[class*="_740174f3d6a2c8fe-expressionPickerPositionLayer"] [class*="_084343c4f11eaaab-drawerSizingWrapper"]{
+[class*="expressionPickerPositionLayer__74017"] [class*="positionContainer__08434"]{height:calc(75vh - 100px);}
+[class*="expressionPickerPositionLayer__74017"] [class*="drawerSizingWrapper__08434"]{
 	max-height:100%;bottom:0px;height:auto;aspect-ratio:var(--gif-picker);}
-[class*='b7e1cb0370c2dd0e-gifFavoriteButton']{background-color:transparent;}
+[class*='gifFavoriteButton_b7e1cb']{background-color:transparent;}
 /* dashless addon and custom font: https://github.com/Vendicated/random-files */
 @font-face{font-family:"Twemoji Mozilla";src:url("https://vendicated.github.io/random-files/Twemoji.Mozilla.ttf") format("truetype");unicode-range:U+1F1E6-1F1FF;}
 @font-face{font-family:"dashless";src:url("https://vendicated.github.io/random-files/Dashless.woff2") format("woff2");
@@ -111,38 +118,62 @@ nav._5e434347c823b592-panels{margin-bottom:0!important;}
 	[class^=headerChannelContainer_] > div /* invite to channel dialog */
 {font-family:"Twemoji Mozilla","dashless",var(--font-primary);}
 /* ### Gradients for Clearvision v6.3.0 by Nyx ### */ /* had to fix/update this */
-._3b95d7d910416e54-unread:after,
-._3b95d7d910416e54-bar:after,
-._972a0d22c8afa7f0-channel._972a0d22c8afa7f0-interactive._972a0d22c8afa7f0-interactiveSelected:after,
-._2b1f52e43a8f1c02-numberBadge,
-._2b1f52e43a8f1c02-textBadge,
-._201d5e8a3c09670a-lookFilled,
-._201d5e8a3c09670a-lookFilled._201d5e8a3c09670a-colorBrand,
-._201d5e8a3c09670a-lookFilled._201d5e8a3c09670a-colorGreen,
-._201d5e8a3c09670a-lookFilled._201d5e8a3c09670a-colorPrimary,
-._581051df43c5ebb6-item,
-._5bc7ed9d4097f6b5-circleIconButton,
-._6e9f8dce4cc18de3-childWrapper,
+.unread__3b95d:after,
+.bar__3b95d:after,
+.channel__972a0.interactive__972a0.interactiveSelected__972a0:after,
+.numberBadge__2b1f5,
+.textBadge__2b1f5,
+.lookFilled__201d5,
+.lookFilled__201d5.colorBrand__201d5,
+.lookFilled__201d5.colorGreen__201d5,
+.lookFilled__201d5.colorPrimary__201d5,
+.item__58105,
+.circleIconButton__5bc7e,
+.childWrapper__6e9f8,
+.newMessagesBar__0f481,
 .sk_theme [style*="background-color:"] {background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
-.a562c840daab72a7-bar,
-.a562c840daab72a7-barFill,
-.b26b790fd1005393-mediaBarGrabber,
-.b26b790fd1005393-mediaBarProgress,
-.b26b790fd1005393-mediaBarProgress:before,
-.b26b790fd1005393-mediaBarProgress:after,
-.b26b790fd1005393-bubble,
+.bar_a562c8,
+.barFill_a562c8,
+.mediaBarGrabber_b26b79,
+.mediaBarProgress_b26b79,
+.mediaBarProgress_b26b79:before,
+.mediaBarProgress_b26b79:after,
+.bubble_b26b79,
 .sk_theme [style*="background-color:"] {background:linear-gradient(var(--dir),var(--acc),var(--sk)) !important;}
-.c8ffbb79449f399c-members .c8ffbb79449f399c-membersWrap:not([style*="color: rgb"], #MemberCount h3) span,
-._99e7cad8d4c55236-privateChannelsHeaderContainer ._99e7cad8d4c55236-headerText {
+.headerText__99e7c::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, currentColor 50%, transparent);margin-right:5px;}
+.headerText__99e7c::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, currentColor 50%, transparent);margin-left:5px;}
+.members_c8ffbb .membersWrap_c8ffbb:not([style*="color: rgb"], #MemberCount h3) span,
+.privateChannelsHeaderContainer__99e7c .headerText__99e7c {
   background-image:linear-gradient(var(--dir),var(--sk)) !important;
-  -webkit-background-clip:text;color:transparent!important;}
-.c8ffbb79449f399c-members .c8ffbb79449f399c-membersGroup:not([style*="color: rgb"]):before,
-.privateChannels__35e86 ._99e7cad8d4c55236-privateChannelsHeaderContainer:before {
+  -webkit-background-clip:text;color:transparent!important;
+  display:flex;text-transform:uppercase;font-size:14px;
+  font-weight:700;align-items:center;}
+.members_c8ffbb .membersGroup_c8ffbb:not([style*="color: rgb"]):before,
+.privateChannels__35e86 .privateChannelsHeaderContainer__99e7c:before {
   background:linear-gradient(to left, var(--sk) 50%, transparent) !important;}
-.c8ffbb79449f399c-members .c8ffbb79449f399c-membersGroup:not([style*="color: rgb"]):after,
-.privateChannels__35e86 ._99e7cad8d4c55236-privateChannelsHeaderContainer:after {
+.members_c8ffbb .membersGroup_c8ffbb:not([style*="color: rgb"]):after,
+.privateChannels__35e86 .privateChannelsHeaderContainer__99e7c:after {
   background:linear-gradient(to right, var(--sk) 50%, transparent) !important;}
-.b26b790fd1005393-mediaBarWrapper,.b26b790fd1005393-mediaBarProgress,.b26b790fd1005393-buffer{border-radius: 3px;}
-._2b1f52e43a8f1c02-numberBadge,._2b1f52e43a8f1c02-textBadge{box-shadow: none !important;}
-.b26b790fd1005393-fakeEdges:before,.b26b790fd1005393-fakeEdges:after{content: unset;}
-/* idk just add your css down here, or somewhere else idc.... */
+.mediaBarWrapper_b26b79,.mediaBarProgress_b26b79{border-radius: 3px;}
+.numberBadge__2b1f5,.textBadge__2b1f5{box-shadow: none !important;}
+.fakeEdges_b26b79:before,.fakeEdges_b26b79:after{content: unset;}
+/* stuff that's not sorted yet, can't be bothered.... */
+:is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.interactive__972a0::before{content:"";position:absolute;top:0;right:100%;bottom:0;left:0;z-index:-1;}
+.interactive__972a0.interactiveSelected__972a0::before {right:0;background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
+.colorDefault_c1e9c4:active:not(.hideInteraction_c1e9c4){background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
+.colorDefault_c1e9c4.focused_c1e9c4{background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
+.checkmark__714a9{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.menu_c1e9c4{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.wrapper__72c38{background:var(--bg-shade);border-color:var(--hsl);}
+.wrapper__72c38:not([data-read-only="true"]):has(input:focus,textarea:focus){border-color:var(--hsl);box-shadow:0 0 2px 0 var(--hsl);outline:2px solid var(--hsl);}
+.primary_a22cb0{border-color:var(--bg-0);background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
+.secondary_a22cb0{background:var(--bg-0);border-color:var(--hsl);}
+.active_caf372{background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
+.label__409aa{color:var(--hsl) !important;margin:0 5px;}
+.sectionLabel__409aa::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, var(--hsl) 50%, transparent);}
+.sectionLabel__409aa::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, var(--hsl) 50%, transparent);}
+.searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+/* just testin some stuff i guess.... */
+*:not(script,style), *:not(script,style):after, *:not(script,style):before { } /* tha funni :trolley: */
+/* idk just add your css down here; or somewhere else idc.... */
