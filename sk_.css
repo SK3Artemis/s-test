@@ -28,10 +28,10 @@
 	--sk_: "░██████╗██╗░░██ ██╔════╝██║░██║ ╚█████╗░█████═╝ ░╚═══██╗██╔═██╗ ██████╔╝██║░╚██ ╚═════╝░╚═╝░░═╝ ";
 	--acc: #1e63b3;		/* gradient color accent */
 	--dir: 130deg;		/* angle of gradient */
-} /* wowie crazie theme changin */
+} /* wowie crazie theme changin; */
 .theme-dark,.theme-light{
 	--bg: hsla(var(--hue), calc(var(--sat) * 50%), var(--light), var(--alpha));	/* hue shift i guess....  */
-	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/calc(var(--shade) * 0.4));	/* background shade stuff */
+	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/calc(var(--shade) * 0.4));	/* shadin.... */
 	--hsl-bg: hsl(from var(--light) h calc(var(--sat, 1) * s) l/alpha);			/* something brightness.. */
 	--hsl: hsl(from var(--sk) h calc(var(--sat, 1) * s) l/alpha);				/* sk color changin stuff */
 	--background-surface-highest: var(--bg);	/* set background color */
@@ -154,10 +154,10 @@ nav.panels__5e434{margin-bottom:0!important;}
 .members_c8ffbb .membersGroup_c8ffbb:not([style*="color: rgb"]):after,
 .privateChannels__35e86 .privateChannelsHeaderContainer__99e7c:after {
   background:linear-gradient(to right, var(--sk) 50%, transparent) !important;}
+/* just some stuff that's not sorted yet; can't be bothered rn.... */
 .mediaBarWrapper_b26b79,.mediaBarProgress_b26b79{border-radius: 3px;}
 .numberBadge__2b1f5,.textBadge__2b1f5{box-shadow: none !important;}
 .fakeEdges_b26b79:before,.fakeEdges_b26b79:after{content: unset;}
-/* stuff that's not sorted yet, can't be bothered.... */
 :is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
 .interactive__972a0::before{content:"";position:absolute;top:0;right:100%;bottom:0;left:0;z-index:-1;}
 .interactive__972a0.interactiveSelected__972a0::before {right:0;background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
@@ -174,6 +174,6 @@ nav.panels__5e434{margin-bottom:0!important;}
 .sectionLabel__409aa::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, var(--hsl) 50%, transparent);}
 .sectionLabel__409aa::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, var(--hsl) 50%, transparent);}
 .searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
-/* just testin some stuff i guess.... */
-*:not(script,style), *:not(script,style):after, *:not(script,style):before { } /* tha funni :trolley: */
+/* testin i guess.... */
+*:not(script,style), *:not(script,style):after, *:not(script,style):before { } /* tha funni; :trolley: */
 /* idk just add your css down here; or somewhere else idc.... */
