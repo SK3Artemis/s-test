@@ -1,10 +1,10 @@
 /**
  * @name !SK_
  * @author SK_Artemis
- * @description Interesting....
+ * @description [ThemeAttributes Plugin Required!] Interesting....
  * @version 2.0.0
  * @website /vanityurl/dotcom/steakpants/flour/flower/index11.html
-*/ /* Relies on Vencord's ThemeAttributes Plugin. Enable it Please.... */
+*/ /* Relies on The ThemeAttributes Plugin! Enable it Please.... */
 /* inspired by (pasted from) cv5/cv6/cv7/simple color/gradients for cv6/kaleidoscope */
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Coda|BioRhyme|Share+Tech+Mono&subset=latin-ext');
@@ -110,8 +110,8 @@ left:calc(var(--custom-guild-list-width) + var(--space-xs));
 width:calc(100% - var(--custom-guild-list-width) - var(--space-xs)*2);
 box-sizing:content-box;}
 nav.panels__5e434{margin-bottom:0 !important;}
-.panels__5e434:after{display:none !important;}
-.wrapper_e131a9 button{padding: 0 !important;}
+.panels__5e434:after{display:none;}
+.wrapper_e131a9 button{padding: 0;}
 /* gif picker resizing and transparent gif favorite button */
 [class*="expressionPickerPositionLayer__74017"] [class*="positionContainer__08434"]{height:calc(75vh - 100px);}
 [class*="expressionPickerPositionLayer__74017"] [class*="drawerSizingWrapper__08434"]{
@@ -195,6 +195,6 @@ nav.panels__5e434{margin-bottom:0 !important;}
 .sectionLabel__409aa::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, var(--hsl) 50%, transparent);}
 .searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
 .switchIndicator_a28278:not([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:var(--hsl) !Important;}
+.switchIndicator_a28278:is([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:hsl(from var(--hsl)h s l/0.2) !Important;}
 .tabBar__133bf .addFriend__133bf.addFriend__133bf.addFriend__133bf{background-color:hsl(from var(--hsl)h s l/1);color:var(--text-subtle);border:none;}
-/* testin random stuff ig; might be broken?; whatever idc.... */
-/* idk just add your css down here; or somewhere else idc.... */
+/* just testin random stuff ig; some css might be broken; add your css down here; or somewhere else, whatever idc.... */
