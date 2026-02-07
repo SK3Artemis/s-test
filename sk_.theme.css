@@ -4,10 +4,11 @@
  * @description [ThemeAttributes Plugin Required!] Interesting....
  * @version 2.0.0
  * @website /vanityurl/dotcom/steakpants/flour/flower/index11.html
-*/ /* Relies on The ThemeAttributes Plugin! Enable it Please.... */
+*/ /* some stuff might be broken; */
 /* inspired by (pasted from) cv5/cv6/cv7/simple color/gradients for cv6/kaleidoscope */
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Coda|BioRhyme|Share+Tech+Mono&subset=latin-ext');
+@import url("https://discord-extensions.github.io/modern-indicators/src/source.css"); /* Updates Discord's indicators to feel more modern. by LuckFire */
 :root {
 	--sk: #7200ff;	/* sk color */
 	--hue: 267;		/* hue (hsl) */
@@ -47,6 +48,11 @@
 	--font-display: var(--main-font);
 	--text-default: hsl(from var(--normal-text) h calc(var(--sat, 1) * s) l/alpha);
 	--text-muted: hsl(from var(--muted-text) h calc(var(--sat, 1) * s) l/alpha);
+	/* modern indicators */
+	--indicator-unread: var(--primary-130-hsl);
+	--indicator-unread-mention: var(--red-400-hsl);
+	--indicator-selected: var(--pink-900-hsl);
+	--indicator-connected: var(--green-700-hsl);
 } /* background css from ClearVisionV67 */
 :is(html,body,.appMount_51fd7){background:none;}
 :is(.root_bfe55a,.container__5e434){background:var(--bg-0);border:none;box-shadow:none;}
@@ -68,7 +74,7 @@
 .channelTextArea__74017{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);}
 .scrollableContainer__74017{background-color:var(--bg);}
 .container_a2f514{background:var(--hsl-bg);}
-[clip-path="url(#a)"]{background:var(--bg-0);} /* test.... */
+/* testin css ig; */
 /* vencord specific stuff */
 .vc-card-base{background:var(--bg);border:none;}
 .vc-addon-card{background:var(--bg);border:none;}
@@ -96,9 +102,11 @@
 .bd-addon-store-card .bd-addon-store-card-tag{background:var(--bg-0);border:1px solid var(--hsl);}
 .bd-addon-store-card .bd-addon-store-card-body{background:hsl(from #000000 h s l/alpha);}
 .bd-button-filled.bd-button-color-brand{background:linear-gradient(var(--dir),var(--bg),var(--sk));}
-/* adblock i guess.... */
+/* adblock/nitro removal; i guess.... */
+.container_c0c49a{display:none;}
 .shopMarketingTooltipContent__4ed1a{display:none;}
 .marketingButtonBackgroundNew__4ed1a,.newBadge__4ed1a{display:none;}
+.popover_d6f39b.popover--video_d6f39b{display:none;}
 .vc-card-base.vc-card-normal.vc-special-card.vc-special-card-special{display:none;} /* vencord donate banner in settings */
 /* !SK_ in top left and SK logo in settings version info */
 .leading_c38106::before{content:"!SK_";position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--sk);order:2;filter:drop-shadow(0 0 5px var(--hsl));}
@@ -174,27 +182,36 @@ nav.panels__5e434{margin-bottom:0 !important;}
 .members_c8ffbb .membersGroup_c8ffbb:not([style*="color: rgb"]):after,
 .privateChannels__35e86 .privateChannelsHeaderContainer__99e7c:after {
   background:linear-gradient(to right, var(--sk) 50%, transparent) !important;}
-/* just some stuff that's not sorted yet; can't be bothered rn.... */
-.mediaBarWrapper_b26b79,.mediaBarProgress_b26b79{border-radius: 3px;}
-.numberBadge__2b1f5,.textBadge__2b1f5{box-shadow:none !important;}
-.fakeEdges_b26b79:before,.fakeEdges_b26b79:after{content: unset;}
-:is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+/* some additional gradients ig; */
 .interactive__972a0::before{content:"";position:absolute;top:0;right:100%;bottom:0;left:0;z-index:-1;}
 .interactive__972a0.interactiveSelected__972a0::before{right:0;background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
 .colorDefault_c1e9c4:active:not(.hideInteraction_c1e9c4){background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
 .colorDefault_c1e9c4.focused_c1e9c4{background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
-.checkmark__714a9{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
-.menu_c1e9c4{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
-.wrapper__72c38{background:var(--bg-shade);border-color:var(--hsl);}
-.wrapper__72c38:not([data-read-only="true"]):has(input:focus,textarea:focus){border-color:var(--hsl);box-shadow:0 0 2px 0 var(--hsl);outline:2px solid var(--hsl);}
 .primary_a22cb0{border-color:var(--bg-0);background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
 .secondary_a22cb0{background:var(--bg-0);border-color:var(--hsl);}
-.active_caf372{background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
+/* gradient settings sections: ------ Settings ------ */
 .label__409aa{color:var(--hsl) !important;margin:0 5px;}
 .sectionLabel__409aa::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, var(--hsl) 50%, transparent);}
 .sectionLabel__409aa::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, var(--hsl) 50%, transparent);}
-.searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+/* some discord stuff */
+.numberBadge__2b1f5,.textBadge__2b1f5{box-shadow:none !important;}
+.fakeEdges_b26b79:before,.fakeEdges_b26b79:after{content: unset;}
+.mediaBarWrapper_b26b79,.mediaBarProgress_b26b79{border-radius: 3px;}
 .switchIndicator_a28278:not([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:var(--hsl) !Important;}
 .switchIndicator_a28278:is([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:hsl(from var(--hsl)h s l/0.2) !Important;}
+.searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
 .tabBar__133bf .addFriend__133bf.addFriend__133bf.addFriend__133bf{background-color:hsl(from var(--hsl)h s l/1);color:var(--text-subtle);border:none;}
-/* just testin random stuff ig; some css might be broken; add your css down here; or somewhere else, whatever idc.... */
+/* scrollbar color guh */
+:is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb{background-color:var(--hsl);}
+:is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb:active{background-color:var(--hsl);}
+.custom-user-profile-theme::-webkit-scrollbar-thumb{background-color:var(--hsl);}
+.scrollableContainer__74017::-webkit-scrollbar-thumb{background-color:var(--hsl);}
+/* broken or not updated; gonna fix it at some point ig; */
+.wrapper__72c38{background:var(--bg-shade);border-color:var(--hsl);}
+.wrapper__72c38:not([data-read-only="true"]):has(input:focus,textarea:focus){border-color:var(--hsl);box-shadow:0 0 2px 0 var(--hsl);outline:2px solid var(--hsl);}
+:is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.menu_c1e9c4{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.active_caf372{background:linear-gradient(var(--dir),var(--bg),var(--sk)) !important;}
+/* this stuff not sorted yet; can't be bothered rn. */
+.checkmark__714a9{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+/* add your css down here; or somewhere else; idc.... */
