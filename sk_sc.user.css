@@ -1,0 +1,132 @@
+/* ==UserStyle==
+@name         !SK_SoundCloud
+@namespace    !SK_
+@author       SK_Artemis
+@description  Interesting....
+@version      2.0.2
+@license      NONE
+==/UserStyle== */
+@-moz-document domain("soundcloud.com"), domain("soundcloud.app.goo.gl") {
+    body {
+        background-image: url(https://sk3artemis.github.io/s-test/images/Untitled.png) !important;
+        background-attachment: fixed !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
+    .sceneLayer:not(.waveformCommentsNode),
+    .sc-button-play,
+    .profileMenu__icon,
+    .playbackTimeline,
+    .g-tabs-item,
+    .header__logo,
+    .playControls__repeat,
+    .notificationIcon,
+    .compactTrackListItem.active,
+    .compactTrackListItem.active .compactTrackListItem__content,
+    .compactTrackListItem.active .compactTrackListItem__trackTitle,
+    .compactTrackListItem.active .compactTrackListItem__user,
+    .volume__sliderProgress,
+    .volume__sliderHandle,
+    .commentPopover__username,
+    a.commentPopover__username:hover,
+    a.commentPopover__username:visited,
+    .sc-label.sc-label-private,
+    .error .gritter-top,
+    .searchOptions__navigationItem.active,
+    .sc-button-cta,
+    .sc-button-cta:hover,
+    .sc-button-cta:focus,
+    .sc-button-cta:visited,
+    .sc-button.sc-button-white:hover,
+    .sc-button.sc-button-white:focus,
+    .sc-button-selected.sc-button-medium,
+    .soundBadge.active .soundTitle__title,
+    .sc-orange,
+    .premiumContent__uploadImagePro,
+    .premiumContent__uploadImageProUnlimited,
+    .premiumModalPlansContent__checked,
+    .sc-button-dropdown,
+    .sc-button-active,
+    .sc-button-selected,
+    .sc-classic .linkMenu__activeItem > a,
+    .sc-classic .linkMenu__item > a:hover,
+    .playbackSoundBadge__showQueue,
+    .sc-toggle:before,
+    .notificationIcon.newItems__some,
+    .progressBar__bar,
+    .sc-text-orange,
+    .sc-background-orange,
+    .topStatsItem.m-soundcloud-app div[style*="svg"],
+    .statsSummary__icon.g-stats-icon.g-stats-icon-play.g-stats-icon-orange,
+    .userStatsLegend__item1,
+    .statsOverview__chartWrapper,
+    .sc-status-label,
+    .sc-status-icon-activity,
+    .tileGallery__sliderButton.tileGallery__slideForwardButton.sc-button.sc-button-small.sc-button-icon:after,
+    .shuffleControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon.sc-mr-1x.m-shuffling,
+    .sc-button-like.playbackSoundBadge__like.sc-button-secondary.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive.sc-button-selected,
+    .sc-button-like.sc-button-secondary.sc-button.sc-button-medium.sc-button-responsive.sc-button-selected,
+    .sc-button-repost.sc-button-secondary.sc-button.sc-button-medium.sc-button-responsive.sc-button-selected,
+    .sc-button-follow.playbackSoundBadge__follow.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive.sc-button-secondary.m-boldIcon.sc-button-selected,
+    .listDisplayToggle__badgeToggle.sc-button.sc-button-secondary.sc-button-medium.sc-button-icon.sc-button-selected,
+    .listDisplayToggle__listToggle.sc-button.sc-button-secondary.sc-button-medium.sc-button-icon.sc-button-selected,
+    .repeatControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon.m-one .playControls__repeatIcon,
+    .repeatControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon.m-all .playControls__repeatIcon,
+    .sc-button-share.sc-button-secondary.sc-button.sc-button-medium.sc-button-responsive,
+    .sc-button-startstation.sc-button-secondary.sc-button.sc-button-medium.sc-button-responsive,
+    .volume__button.volume__speakerIcon.sc-button.sc-button-secondary.sc-button-small.sc-button-icon,
+    .uiEvoButton--isSelected,
+    .uiEvoButton.uiEvoButton--isSelected:hover,
+    .sc-classic .trackItem:not(.m-disabled).active .trackItem__trackTitle,
+    .sc-classic .header__link.header__proUpsell_side_by_side_experience,
+    .sc-classic .header__link.header__goUpsell_side_by_side_experience,
+    .sc-classic .searchOptions__filter.active,
+    .sc-classic .searchTags__location.searchTags__locationSelected,
+    rect.Bar_GraphBar__2gRtn.Bar_GraphBarCurrentTrack__1n1fi.Bar_ForegroundBar__WvgRY,
+    svg.WorldMap_WorldMap__Crb3l
+        > path:not([style="fill: rgb(243, 243, 243);"]),
+    .sc-classic .insightsSidebarModule__button,
+    .inboxItem.sc-border-box.active:before {
+        color: #7200ff !important;
+    }
+    /* .sc-button-label{color: #000000 !important;} */
+    .loading-scdl-btn.sc-button.sc-button-cta.sc-button-medium,
+    .getall-scdl-btn.sc-button.sc-button-cta.sc-button-medium {
+        color: #ff0000 !important;
+    }
+    .sc-classic .inboxItem.active {
+        border-left: none;
+        margin-left: 2px;
+    }
+    .inboxItem.sc-border-box.active:before {
+        content: "";
+        height: 60px;
+        position: absolute;
+        border-left: 2px solid #0000ff;
+        margin-left: -2px;
+    }
+    .header.sc-selection-disabled.fixed.g-z-index-header.sc-text-h4.show {
+        background: rgba(10,10,10,0.9);
+    }
+    .playControls__inner {
+        background: rgba(10,10,10,0.9);
+    }
+    .sc-button-follow.playbackSoundBadge__follow.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive.sc-button-secondary.m-boldIcon.sc-button-selected,
+    .sc-button-like.playbackSoundBadge__like.sc-button-secondary.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive,
+    .playbackSoundBadge__showQueue.sc-button.sc-button-secondary.sc-button-small.sc-button-icon,
+    .volume__button.volume__speakerIcon.sc-button.sc-button-secondary.sc-button-small.sc-button-icon,
+    .repeatControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon.m-none,
+    .repeatControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon,
+    .shuffleControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon.sc-mr-1x,
+    .skipControl.sc-ir.playControls__control.playControls__prev.sc-button.sc-button-secondary.sc-button-large.sc-button-icon.sc-mr-2x.skipControl__previous,
+    .skipControl.sc-ir.playControls__control.playControls__next.sc-button.sc-button-secondary.sc-button-large.sc-button-icon.sc-mr-3x.skipControl__next
+    {
+        background-color:#000000 !important;
+    }
+    ._3_qrOigb__d19Q8Z2HrnQx.sc-button.sc-button-primary.sc-button-cta.sc-button-large.insightsSidebarModule__button,
+    .sc-button-follow.sc-button.sc-button-medium.sc-button-cta.sc-button-primary
+    {
+        background-color:#7200ff !important;
+    }
+    .__className_dd938b.__variable_dd938b{display:none!important;}
+}
