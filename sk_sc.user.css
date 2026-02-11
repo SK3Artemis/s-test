@@ -5,13 +5,39 @@
 @description  Interesting....
 @version      2.0.2
 @license      NONE
+@updateURL https://raw.githubusercontent.com/SK3Artemis/s-test/refs/heads/main/sk_sc.user.css
+@advanced       color col "Color" #7200FF
+@advanced       dropdown bg "Background Image" {
+                    bg-low "LOW Quality Galaxy" <<<EOT https://sk3artemis.github.io/s-test/images/Untitled.png EOT;
+                    bg-high "HIGH Quality Galaxy" <<<EOT https://sk3artemis.github.io/s-test/images/562961.png EOT;
+                    bg-custom "Custom" <<<EOT /*[[custom-bg]]*\/ EOT;
+}
+@advanced       text custom-bg "Background Image (Custom)" "https://example.com/image.png"
+@advanced       color bar "Bar Color" #000000F0
+@advanced       color scdl "SCDL Color" #FF0000
 ==/UserStyle== */
-@-moz-document domain("soundcloud.com"), domain("soundcloud.app.goo.gl") {
+@-moz-document domain("soundcloud.com") {
     body {
-        background-image: url(https://sk3artemis.github.io/s-test/images/Untitled.png) !important;
+        background-image: url("/*[[bg]]*/") !important;
         background-attachment: fixed !important;
         background-repeat: no-repeat !important;
         background-size: cover !important;
+    }
+    .scdl-btn-start.sc-button.sc-button-small.sc-button-responsive,
+    .loading-scdl-btn.sc-button.sc-button-cta.sc-button-medium,
+    .getall-scdl-btn.sc-button.sc-button-cta.sc-button-medium {
+        color: /*[[scdl]]*/ !important;
+    }
+    .inboxItem.sc-border-box.active:before {
+        content: "";
+        height: 60px;
+        position: absolute;
+        border-left: 2px solid #0000ff;
+        margin-left: -2px;
+    }
+    .sc-classic .inboxItem.active {
+        border-left: none;
+        margin-left: 2px;
     }
     .sceneLayer:not(.waveformCommentsNode),
     .sc-button-play,
@@ -33,7 +59,7 @@
     .sc-label.sc-label-private,
     .error .gritter-top,
     .searchOptions__navigationItem.active,
-    .sc-button-cta,
+    .sc-button-cta:not(.insightsSidebarModule__button),
     .sc-button-cta:hover,
     .sc-button-cta:focus,
     .sc-button-cta:visited,
@@ -72,8 +98,6 @@
     .listDisplayToggle__listToggle.sc-button.sc-button-secondary.sc-button-medium.sc-button-icon.sc-button-selected,
     .repeatControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon.m-one .playControls__repeatIcon,
     .repeatControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon.m-all .playControls__repeatIcon,
-    .sc-button-share.sc-button-secondary.sc-button.sc-button-medium.sc-button-responsive,
-    .sc-button-startstation.sc-button-secondary.sc-button.sc-button-medium.sc-button-responsive,
     .volume__button.volume__speakerIcon.sc-button.sc-button-secondary.sc-button-small.sc-button-icon,
     .uiEvoButton--isSelected,
     .uiEvoButton.uiEvoButton--isSelected:hover,
@@ -86,30 +110,14 @@
     svg.WorldMap_WorldMap__Crb3l
         > path:not([style="fill: rgb(243, 243, 243);"]),
     .sc-classic .insightsSidebarModule__button,
-    .inboxItem.sc-border-box.active:before {
-        color: #7200ff !important;
+    .inboxItem.sc-border-box.active:before,
+    .sk_theme {
+        color: /*[[col]]*/ !important;
     }
-    /* .sc-button-label{color: #000000 !important;} */
-    .loading-scdl-btn.sc-button.sc-button-cta.sc-button-medium,
-    .getall-scdl-btn.sc-button.sc-button-cta.sc-button-medium {
-        color: #ff0000 !important;
-    }
-    .sc-classic .inboxItem.active {
-        border-left: none;
-        margin-left: 2px;
-    }
-    .inboxItem.sc-border-box.active:before {
-        content: "";
-        height: 60px;
-        position: absolute;
-        border-left: 2px solid #0000ff;
-        margin-left: -2px;
-    }
-    .header.sc-selection-disabled.fixed.g-z-index-header.sc-text-h4.show {
-        background: rgba(10,10,10,0.9);
-    }
-    .playControls__inner {
-        background: rgba(10,10,10,0.9);
+    .sc-button-follow.playbackSoundBadge__follow.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive.sc-button-secondary.m-boldIcon,
+    .sc-button-like.playbackSoundBadge__like.sc-button-secondary.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive,
+    .sk_theme {
+        border: 1px solid #555;
     }
     .sc-button-follow.playbackSoundBadge__follow.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive.sc-button-secondary.m-boldIcon.sc-button-selected,
     .sc-button-like.playbackSoundBadge__like.sc-button-secondary.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive,
@@ -119,14 +127,56 @@
     .repeatControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon,
     .shuffleControl.sc-ir.sc-button.sc-button-secondary.sc-button-small.sc-button-icon.sc-mr-1x,
     .skipControl.sc-ir.playControls__control.playControls__prev.sc-button.sc-button-secondary.sc-button-large.sc-button-icon.sc-mr-2x.skipControl__previous,
-    .skipControl.sc-ir.playControls__control.playControls__next.sc-button.sc-button-secondary.sc-button-large.sc-button-icon.sc-mr-3x.skipControl__next
-    {
-        background-color:#000000 !important;
+    .skipControl.sc-ir.playControls__control.playControls__next.sc-button.sc-button-secondary.sc-button-large.sc-button-icon.sc-mr-3x.skipControl__next,
+    .sc-button-follow.playbackSoundBadge__follow.sc-mr-1x.sc-button.sc-button-small.sc-button-icon.sc-button-responsive.sc-button-secondary.m-boldIcon,
+    .sk_theme {
+        background-color: #00000000 !important;
     }
     ._3_qrOigb__d19Q8Z2HrnQx.sc-button.sc-button-primary.sc-button-cta.sc-button-large.insightsSidebarModule__button,
-    .sc-button-follow.sc-button.sc-button-medium.sc-button-cta.sc-button-primary
-    {
-        background-color:#7200ff !important;
+    .playbackTimeline__progressBar,
+    .sk_theme {
+        background-color: /*[[col]]*/ !important;
     }
-    .__className_dd938b.__variable_dd938b{display:none!important;}
+    .header.sc-selection-disabled.fixed.g-z-index-header.sc-text-h4.show,
+    .playControls__inner {
+        background: /*[[bar]]*/ !important;
+    }
+    .__className_dd938b.__variable_dd938b,
+    .crossfade-announcement,
+	.ot-sdk-container,
+    .spotlight__upsellCTA,
+    .spotlight.isMine.empty,
+	.onetrust-pc-dark-filter.ot-fade-in,
+    .otFlat.ot-iab-2.bottom.vertical-align-content,
+    .otFlat.ot-iab-2.bottom.vertical-align-content.ot-buttons-fw,
+    .header__link.header__fanUpsell,.header__fanUpsell.header__link,
+    .creatorSubscriptionsButton.sc-link.headerMenu__link.profileMenu__premium,
+    .sc-button-insights.sc-button.sc-button-medium.sc-button-cta.sc-button-primary,
+    .creatorSubscriptionsButton.header__creatorUpsell.sc-button-medium.sc-button-responsive.header__button,
+    .headerMenu__link.moreMenu__link.m-highlight:is([href="https://checkout.soundcloud.com/go?ref=t1022"]),
+    .banner.sc-type-medium.sc-text-body.sc-p-2x.m-get_heard.l-inner-fullwidth.primary,
+    .banner.sc-type-medium.sc-text-body.sc-p-2x.m-alert.l-inner-fullwidth.primary,
+    .sidebarModule.g-all-transitions-200-linear.mobileApps,
+    .velvetCakeIframe,
+	.sk_theme {
+        display: none !important;
+    }
+    ::-webkit-scrollbar,
+    div::-webkit-scrollbar {
+	    width: 18px;
+    }
+    ::-webkit-scrollbar-track {
+    	background: linear-gradient(360deg, /*[[bar]]*/ 91px);
+    }
+    div::-webkit-scrollbar-track, ul::-webkit-scrollbar-track {
+    	background: transparent;
+    }
+    ::-webkit-scrollbar-thumb,
+    div::-webkit-scrollbar-thumb {
+    	background: #333;
+    }
+    ::-webkit-scrollbar-thumb:hover,
+    div::-webkit-scrollbar-thumb:hover {
+    	background: #333;
+    }
 }
