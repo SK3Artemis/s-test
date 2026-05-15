@@ -150,14 +150,12 @@
 .vc-settings-tab .vc-card-base.vc-card-primary.vc-special-card.vc-special-card-special{display:none;} /* equicord donate banner in settings */
 /* info text in top left; theme version and author / SK logo in settings version info */
 .leading_c38106::before{content:var(--name)"v"var(--ver);position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--col);order:2;filter:drop-shadow(0 0 5px var(--asdf));}
-.clickable__973df::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);} /* Vencord's Web Extension */
-.clickable__973df::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;}	/* ^sk logo looks weird on the web version.... */
+.clickable__973df::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
+.clickable__973df::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;} /* Vencord's Web Extension Version Info */
 .clickable__081d7::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
-.clickable__081d7::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;}
-.clickable__2debe::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);} /* <-- outdated shit. */
-.clickable__2debe::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;} /* <-- ^ leavin this in for compatibility */
+.clickable__081d7::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:10px;} /* Vencord / Equicord Version Info */
 .bd-version-info::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
-.bd-version-info::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;}
+.bd-version-info::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;} /* BetterDiscord Version Info */
 /* some other changes/fixes (small user thingy) idk how to call this.... */
 .visual-refresh section.panels__5e434{
 left:calc(var(--custom-guild-list-width) + var(--space-xs));
