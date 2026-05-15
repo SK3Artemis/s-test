@@ -2,15 +2,15 @@
  * @name !SK_
  * @author SK_Artemis
  * @description [ThemeAttributes Plugin Required!] Interesting....
- * @version 2.0.5
+ * @version 2.0.6
  * @website /vanityurl/dotcom/steakpants/flour/flower/index11.html
 */ /* inspired by (pasted from) cv5/cv6/cv7/simple color/discord+/gradients for cv6/modern indicators/kaleidoscope */
-@import url("https://fonts.googleapis.com/css2?family=Coda&family=BioRhyme&family=Share+Tech+Mono&family=Karla:wght@400;500;600;700&family=Roboto:wght@300;400;900&display=swap");
-:root {
-	--sk_: "!SK_";	/* theme name */
-	--ver: "2.0.5";	/* @version ? */
-	--sk: #7300ff;	/* main color */
-	--hue: 267;		/* hue? (hsl) */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&family=Coda&family=BioRhyme&family=Share+Tech+Mono&family=Karla:wght@400;500;600;700&family=Roboto:wght@300;400;900&display=swap");
+:root { /* this theme is made to be used with the default discord ash/dark theme since i dont have nitro and dont wanna make it compatible with other ones */
+	--name: "!SK_";	/* theme name */
+	--ver: "2.0.6";	/* @version ? */
+	--col: #7300ff;	/* main color */
+	--hsl-hue: 267;	/* hue? (hsl) */
 	--sat: 1;		/* saturation */
 	--shade: 100%;	/* shading */
 	--alpha: 0.6;	/* opacity */
@@ -24,31 +24,33 @@
 	--gif-picker: 0.125 / 1;	/* resize gif picker aspect ratio */
 	--normal-text: #d8d8db;		/* text coloring */
 	--muted-text: #aeaeb4;		/* text coloring */
-	--main-font: "gg sans", "Helvetica Neue", "Roboto", 'Karla', BioRhyme, Coda, Whitney, Helvetica Neue, Helvetica, Arial, Consolas, sans-serif;	/* fonts (must be installed) */
+	--main-font: "gg sans", "Helvetica Neue", "Noto Sans Symbols 2", "Roboto", 'Karla', BioRhyme, Coda, Whitney, Helvetica, Arial, Consolas, sans-serif;/* fonts must be installed */
+	--code-font: "gg mono", "Share Tech Mono", "Liberation Mono", Menlo, Courier, Consolas, monospace; /* fonts for codeblocks */ /* fonts must be installed or loaded via @import */
 	--logo: "░██████╗██╗░░██ ██╔════╝██║░██║ ╚█████╗░█████═╝ ░╚═══██╗██╔═██╗ ██████╔╝██║░╚██ ╚═════╝░╚═╝░░═╝ ";
 	--accent: #1e63b3;	/* gradient color accent */
 	--dir: 130deg;		/* angle of gradient */
 } /* wowie crazie theme changin; */
-.theme-dark,.theme-light{
-	--gr: linear-gradient(var(--dir),var(--bg),var(--sk)); /* defining gradient here to ctrl+c/v it later */
-	--bg: hsla(var(--hue), calc(var(--sat) * 50%), var(--light), var(--alpha));	/* hue shift i guess....  */
-	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/calc(var(--shade) * 0.4));	/* shadin.... */
-	--hsl-bg: hsl(from var(--light) h calc(var(--sat, 1) * s) l/alpha);			/* something brightness.. */
-	--hsl: hsl(from var(--sk) h calc(var(--sat, 1) * s) l/alpha);				/* sk color changin stuff */
+.theme-dark,.theme-light,.sk_theme{ /* add more theme definitions here if needed.... (im lazy to add them) */
+	--gr: linear-gradient(var(--dir),var(--bg),var(--col)); /* defining gradient here to ctrl+c/v it later */
+	--bg: hsla(var(--hsl-hue), calc(var(--sat) * 50%), var(--light), var(--alpha));	/* hue shift i guess;  */
+	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/calc(var(--shade) * 0.4));	/* bg opacity; */
+	--hsl-bg: hsl(from var(--light) h calc(var(--sat, 1) * s) l/alpha);			/* shading? brightness.... */
+	--hsl-main: hsl(from var(--col) h calc(var(--sat, 1) * s) l/alpha);			/* sk; color changin stuff */
 	--background-surface-highest: var(--bg);	/* set background color */
 	--background-surface-higher: var(--bg);		/* set background color */
 	--background-surface-high: var(--bg);		/* set background color */
 	--background-base-lowest: var(--bg);		/* set background color */
 	--background-base-lower: var(--bg);			/* set background color */
 	--background-base-low: var(--bg);			/* set background color */
-	--background-floating: var(--bg) !important;/* set background color */
+	--background-floating: var(--bg)!important;/* set background color */
 	--background-primary: var(--image) var(--bg-pos) / var(--bg-size) no-repeat;	/* affects OpenAsar backgrond */
 	--background-secondary: var(--bg);		/* set background color */
 	--background-secondary-alt: var(--bg);	/* set background color */
 	--background-tertiary: var(--bg);		/* set background color */
-	--text-link: var(--hsl);	/* link color */
+	--text-link: var(--hsl-main);	/* link color */
 	/* SET DEFAULTS */
-	--header-primary: var(--sk);	/* affects OpenAsar text color */
+	--header-primary: var(--col);	/* affects OpenAsar text color */
+	--font-code: var(--code-font);	/* used by code-embeds and ShikiCodeBlocks by default (can be overridden in it's settings) */
 	--font-primary: var(--main-font);
 	--font-display: var(--main-font);
 	--text-default: hsl(from var(--normal-text) h calc(var(--sat, 1) * s) l/alpha);
@@ -58,10 +60,12 @@
 	--indicator-unread-mention: var(--red-400-hsl);
 	--indicator-selected: var(--pink-900-hsl);
 	--indicator-connected: var(--green-700-hsl);
+	/* guhhh */
+	--asfd: var(--hsl-main);
 } /* background css from ClearVisionV67 */
 :is(html,body,.appMount_51fd7){background:none;}
 :is(.root_bfe55a,.container__5e434){background:var(--bg-0);border:none;box-shadow:none;}
-.container__5aa3a [xmlns="http://www.w3.org/2000/svg"]{display:none;} /* removes that annoying svg overlay in the vc background */
+.container__5aa3a [xmlns="http://www.w3.org/2000/svg"]{display:none;} /* this removes that annoying transparent svg overlay in the vc background */
 .bg__960e4{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:-1;}
 .root_bfe55a{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
 .sidebar__5e434{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
@@ -70,30 +74,30 @@
 .app__160d8{background:hsl(from var(--hsl-bg) h s l/calc(var(--sat) * 0.1));}
 .wrapper_ef3116{margin-bottom:var(--app-height);background:var(--bg-0);padding-top:10px;}
 .header__49fc1,.content__49fc1,.footer__49fc1{background:var(--bg-0);}
-.wanderingCubes__46696 .item__46696{background:var(--hsl);}
-.path__46696{stroke:var(--hsl);}
+.wanderingCubes__46696 .item__46696{background:var(--hsl-main);}
+.path__46696{stroke:var(--hsl-main);}
 .chat_f75fb0{background:var(--bg-0);}
-.chatContent_f75fb0,.scroller__99e7c{background:hsl(from var(--bg-shade) h s l/calc(var(--shade) * 0.4)) !important;}
+.chatContent_f75fb0,.scroller__99e7c{background:hsl(from var(--bg-shade) h s l/calc(var(--shade) * 0.4))!important;}
 .chatContent_f75fb0{background:var(--bg-0);}
 .content__5e434{background:var(--bg);} 
-.channelTextArea__74017:focus-within{border-color:var(--bg-0);box-shadow:0 0 0 2px var(--hsl);}
+.channelTextArea__74017:focus-within{border-color:var(--bg-0);box-shadow:0 0 0 2px var(--hsl-main);}
 .channelTextArea__74017{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);}
 .scrollableContainer__74017{background-color:var(--bg);}
 .container_a2f514{background:var(--hsl-bg);}
 .privacyTermsCard__6de8b{background:var(--bg)!important;}
-.mentioned__5126c{--bg-m:hsl(from var(--hsl)h s l/.1);background:var(--bg-m);}
-.mentioned__5126c:before{background-color:var(--hsl);}
+.mentioned__5126c{--bg-m:hsl(from var(--hsl-main)h s l/.1);background:var(--bg-m);}
+.mentioned__5126c:before{background-color:var(--hsl-main);}
 .container_c8ffbb{background:none;border:none;}
 .membersWrap_c8ffbb{background:none;border:none;}
 .members_c8ffbb{background:hsl(from var(--bg-shade)h s l/calc(var(--shade) * 0.3));}
-.membersGroup_c8ffbb{display:flex;color:var(--hsl);font-weight:700;align-items:center;}
+.membersGroup_c8ffbb{display:flex;color:var(--hsl-main);font-weight:700;align-items:center;}
 .membersGroup_c8ffbb:before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left,currentColor 50%,transparent);margin-right:5px;}
 .membersGroup_c8ffbb:after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right,currentColor 50%,transparent);margin-left:5px;}
-.label__409aa{color:var(--hsl) !important;margin:0 5px;}
-.sectionLabel__409aa::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, var(--hsl) 50%, transparent);}
-.sectionLabel__409aa::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, var(--hsl) 50%, transparent);}
-.wrapper__72c38{background:var(--bg-shade);border-color:var(--hsl);}
-.wrapper__72c38:not([data-read-only="true"]):has(input:focus,textarea:focus){border-color:var(--hsl);box-shadow:0 0 2px 0 var(--hsl);outline:2px solid var(--hsl);}
+.label__409aa{color:var(--hsl-main)!important;margin:0 5px;}
+.sectionLabel__409aa::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, var(--hsl-main) 50%, transparent);}
+.sectionLabel__409aa::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, var(--hsl-main) 50%, transparent);}
+.wrapper__72c38{background:var(--bg-shade);border-color:var(--hsl-main);}
+.wrapper__72c38:not([data-read-only="true"]):has(input:focus,textarea:focus){border-color:var(--hsl-main);box-shadow:0 0 2px 0 var(--hsl-main);outline:2px solid var(--hsl-main);}
 /* some stuff might be broken idk; */
 /* vencord/equicord specific stuff */
 :is(.theme-dark,.theme-light) #vc-spotify-player{background:var(--bg-0);}
@@ -101,38 +105,39 @@
 .vc-pindms-collapse-icon{color:currentColor;}
 .vc-card-base{background:var(--bg);border:none;}
 .vc-addon-card{background:var(--bg);border:none;}
-.vc-btn-primary{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
-.vc-settings-quickActions-pill:hover{box-shadow:none;border:1px solid var(--hsl);}
+.vc-btn-primary{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
+.vc-settings-quickActions-pill:hover{box-shadow:none;border:1px solid var(--hsl-main);}
 .vc-settings-quickActions-pill{background:var(--gr)!important;border:1px solid #000;}
-.vc-plugin-ui-elements-modal-content{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
-.vc-plugin-ui-elements-button:hover{background:var(--bg);border:1px solid var(--hsl);}
-.vc-switch-container.vc-switch-checked{background:var(--hsl) !important;}
-.vc-switch-container{background:hsl(from var(--hsl)h s l/0.2)!important;}
+.vc-plugin-ui-elements-modal-content{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
+.vc-plugin-ui-elements-button:hover{background:var(--bg);border:1px solid var(--hsl-main);}
+.vc-switch-container.vc-switch-checked{background:var(--hsl-main) !important;}
+.vc-switch-container{background:hsl(from var(--hsl-main)h s l/0.2)!important;}
 /* equicord specific weirdness be happening here */ /* i hate css.... */
-.vc-switch-container.vc-switch-checked .vc-switch-indicator{background:var(--hsl) !important;}
-.vc-switch-container .vc-switch-indicator{background:hsl(from var(--hsl)h s l/0.2)!important;}
+.vc-switch-container.vc-switch-checked .vc-switch-indicator{background:var(--hsl-main) !important;}
+.vc-switch-container .vc-switch-indicator{background:hsl(from var(--hsl-main)h s l/0.2)!important;}
 /* idk how to fix the switch background on equicord; without making a theme just for equicord.... */
-/* betterdiscord specific stuff */
-.bd-box{background:hsl(from var(--hsl)h s l/0.2);}
-.bd-box.selected{background:var(--hsl);}
-.bd-button.bd-button:is(.selected){background:var(--hsl);}
-.bd-container{background:var(--bg);border-color:var(--hsl);}
+/* betterdiscord specific stuff */ /* i dont use bd or equicord so in case of errors don't ask me.*/
+.bd-box{background:hsl(from var(--hsl-main)h s l/0.2);}
+.bd-box.selected{background:var(--hsl-main);}
+.bd-button.bd-button:is(.selected){background:var(--hsl-main);}
+.bd-container{background:var(--bg);border-color:var(--hsl-main);}
 .bd-settings-title{background:var(--gr);}
 .bd-store-card{background:var(--shade);border:1px solid var(--bg-0);}
-.bd-store-card:hover{background:var(--shade);box-shadow:none;border-color:var(--hsl);}
+.bd-store-card:hover{background:var(--shade);box-shadow:none;border-color:var(--hsl-main);}
 .bd-addon-card{background:var(--bg);border: 2px solid rgba(0, 0, 0, 0);}
-.bd-addon-card:hover{background:var(--bg);border-color:var(--hsl);}
+.bd-addon-card:hover{background:var(--bg);border-color:var(--hsl-main);}
 .bd-addon-header,.bd-description-wrap,.bd-footer{background:var(--bg);}
-.bd-switch .bd-switch-body{background:hsl(from var(--hsl)h s l/0.2);}
-.bd-switch.bd-switch-checked .bd-switch-body{background:var(--hsl);}
-.bd-modal-root{background:var(--bg);border:2px solid var(--hsl);}
+.bd-switch .bd-switch-body{background:hsl(from var(--hsl-main)h s l/0.2);}
+.bd-switch.bd-switch-checked .bd-switch-body{background:var(--hsl-main);}
+.bd-modal-root{background:var(--bg);border:2px solid var(--hsl-main);}
 .bd-modal-footer{background:var(--bg-0);}
 .bd-addon-store-card{background:var(--bg);border:1px solid var(--bg-0);}
-.bd-addon-store-card:hover{background:var(--bg);box-shadow:none;border-color:var(--hsl);}
-.bd-addon-store-card .bd-addon-store-card-tag{background:var(--bg-0);border:1px solid var(--hsl);}
+.bd-addon-store-card:hover{background:var(--bg);box-shadow:none;border-color:var(--hsl-main);}
+.bd-addon-store-card .bd-addon-store-card-tag{background:var(--bg-0);border:1px solid var(--hsl-main);}
 .bd-addon-store-card .bd-addon-store-card-body{background:hsl(from #000000 h s l/alpha);}
 .bd-button-filled.bd-button-color-brand{background:var(--gr);}
-/* adblock/nitro removal; i guess.... */
+/* adblock/nitro/"discord games" removal; i guess.... */
+.clickable__81391[aria-label*="Last Meadow Online"]{display:none;}
 .container__8279f{background-image:none!important;}
 .premiumFeatureBorder__65c15{display:none;}
 .marketingButtonBackgroundNew__4ed1a,.newBadge__4ed1a{display:none;}
@@ -144,18 +149,22 @@
 .vc-settings-tab .vc-card-base.vc-card-normal.vc-special-card.vc-special-card-special{display:none;} /* vencord donate banner in settings */
 .vc-settings-tab .vc-card-base.vc-card-primary.vc-special-card.vc-special-card-special{display:none;} /* equicord donate banner in settings */
 /* info text in top left; theme version and author / SK logo in settings version info */
-.leading_c38106::before{content:var(--sk_)"v"var(--ver);position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--sk);order:2;filter:drop-shadow(0 0 5px var(--hsl));}
-.clickable__2debe::before{content:var(--logo);color:var(--sk);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
-.clickable__2debe::after{content:var(--sk_)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;}
-.bd-version-info::before{content:var(--logo);color:var(--sk);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
-.bd-version-info::after{content:var(--sk_)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;}
-/* some other changes/fixes (small user thingy) */
+.leading_c38106::before{content:var(--name)"v"var(--ver);position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--col);order:2;filter:drop-shadow(0 0 5px var(--asdf));}
+.clickable__973df::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);} /* Vencord's Web Extension */
+.clickable__973df::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;}	/* ^sk logo looks weird on the web version.... */
+.clickable__081d7::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
+.clickable__081d7::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;}
+.clickable__2debe::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);} /* <-- outdated shit. */
+.clickable__2debe::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;} /* <-- ^ leavin this in for compatibility */
+.bd-version-info::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
+.bd-version-info::after{content:var(--name)"v"var(--ver)" by SK_Artemis";color:var(--text-muted);position:relative;font-size:12px;}
+/* some other changes/fixes (small user thingy) idk how to call this.... */
 .visual-refresh section.panels__5e434{
 left:calc(var(--custom-guild-list-width) + var(--space-xs));
 width:calc(100% - var(--custom-guild-list-width) - var(--space-xs)*2);
 box-sizing:content-box;}
 nav.panels__5e434{margin-bottom:0!important;}
-.panels__5e434:before{content:"bg";color:transparent;position:fixed;width:100vw;height:100vw;background:url("bg.svg");}
+.panels__5e434:before{content:"bg";color:transparent;position:fixed;width:100vw;height:100vw;background:url("https://sk3artemis.github.io/s-test/images/bg.svg");}/* laggy sometimes */
 .panels__5e434:after{display:none;}
 .wrapper_e131a9 button{padding: 0;}
 /* gif picker resizing and transparent gif favorite button */
@@ -238,11 +247,11 @@ nav.panels__5e434{margin-bottom:0!important;}
 .channel__972a0.interactive__972a0.interactiveSelected__972a0:after,
 .numberBadge__2b1f5,
 .textBadge__2b1f5,
-.lookFilled__201d5,
+.lookFilled__201d5, /* might clash with .button_... or .buttonColor_... */
 .lookFilled__201d5.colorBrand__201d5,
 .lookFilled__201d5.colorGreen__201d5,
 .lookFilled__201d5.colorPrimary__201d5,
-.lookOutlined__201d5,
+.lookOutlined__201d5, /* there are some weird color artifacts in here but idk how to fix it */
 .lookOutlined__201d5.colorBrand__201d5,
 .lookOutlined__201d5.colorGreen__201d5,
 .lookOutlined__201d5.colorPrimary__201d5,
@@ -250,7 +259,7 @@ nav.panels__5e434{margin-bottom:0!important;}
 .circleIconButton__5bc7e,
 .childWrapper__6e9f8,
 .newMessagesBar__0f481,
-.sk_theme[style*="background-color:"]{background:var(--gr)!important;}
+.sk_theme[style*="background-color:"]{background:var(--gr)!important;} /* .sk_theme is a placeholder class in case of incompatibility weirdness (im too lazy to figure out why) */
 .bar_a562c8,
 .barFill_a562c8,
 .mediaBarGrabber_b26b79,
@@ -258,57 +267,57 @@ nav.panels__5e434{margin-bottom:0!important;}
 .mediaBarProgress_b26b79:before,
 .mediaBarProgress_b26b79:after,
 .bubble_b26b79,
-.bd-slider-track,
-.sk_theme[style*="background-color:"]{background:linear-gradient(var(--dir),var(--accent),var(--sk)) !important;}
+.bd-slider-track, /* didnt want to make this theme bd compatible but tried.... */
+.sk_theme[style*="background-color:"]{background:linear-gradient(var(--dir),var(--accent),var(--col))!important;}/* not having a placehoder class like .sk_theme will break it btw.... */
 .headerText__99e7c::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, currentColor 50%, transparent);margin-right:5px;}
 .headerText__99e7c::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, currentColor 50%, transparent);margin-left:5px;}
 .members_c8ffbb .membersWrap_c8ffbb:not([style*="color: rgb"], #MemberCount h3) span,
 .privateChannelsHeaderContainer__99e7c .headerText__99e7c {
-  background-image:linear-gradient(var(--dir),var(--sk)) !important;
-  -webkit-background-clip:text;color:transparent !important;
+  background-image:linear-gradient(var(--dir),var(--col))!important;
+  -webkit-background-clip:text;color:transparent!important;
   display:flex;text-transform:uppercase;font-size:14px;
   font-weight:700;align-items:center;}
 .members_c8ffbb .membersGroup_c8ffbb:not([style*="color: rgb"]):before,
 .privateChannels__35e86 .privateChannelsHeaderContainer__99e7c:before {
-  background:linear-gradient(to left, var(--sk) 50%, transparent) !important;}
+  background:linear-gradient(to left, var(--col) 50%, transparent)!important;}
 .members_c8ffbb .membersGroup_c8ffbb:not([style*="color: rgb"]):after,
 .privateChannels__35e86 .privateChannelsHeaderContainer__99e7c:after {
-  background:linear-gradient(to right, var(--sk) 50%, transparent) !important;}
+  background:linear-gradient(to right, var(--col) 50%, transparent)!important;}
 /* some additional gradients ig; */
 .interactive__972a0::before{content:"";position:absolute;top:0;right:100%;bottom:0;left:0;z-index:-1;}
 .interactive__972a0.interactiveSelected__972a0::before{right:0;background:var(--gr)!important;}
 .colorDefault_c1e9c4:active:not(.hideInteraction_c1e9c4){background:var(--gr)!important;}
 .colorDefault_c1e9c4.focused_c1e9c4{background:var(--gr)!important;}
 .primary_a22cb0{border-color:var(--bg-0);background:var(--gr)!important;} /* this coloring (gradient) affects all buttons smh */
-.secondary_a22cb0{background:var(--bg-0);border-color:var(--hsl);} /* <-- if you want to change the button color do it here ^ */
+.secondary_a22cb0{background:var(--bg-0);border-color:var(--hsl-main);} /* <-- if you want to change the button color do it here ^ */
 .active_caf372{background:var(--gr)!important;}
 /* some discord stuff */
 .backgroundImages__4d7bb{display:none;}
 .game_cc46f0{background:#FFFFFF08!Important;border:none;}
 .perkCard_b62c4e{background:#FFFFFF08!Important;border:none;}
-.preview__5d148{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);box-shadow:0 0 0 2px var(--hsl);}
-.preview__3e443{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);box-shadow:0 0 0 2px var(--hsl);}
-.wrapper__4d7bb{background:var(--bg);box-shadow:0 0 0 2px var(--hsl);}
-.gradient__8e08c{background:var(--bg);box-shadow:0 0 0 2px var(--hsl);}
-.container_cd0f26{background:var(--bg);box-shadow:0 0 0 2px var(--hsl);}
-.border__2f4f7[style*="var(--status-speaking)"]{box-shadow: inset 0 0 0 2px var(--hsl) !Important}
-.card_ac86f6{background:var(--bg);box-shadow:0 0 0 2px var(--hsl);}
-.numberBadge__2b1f5,.textBadge__2b1f5{box-shadow:none !important;}
+.border__2f4f7[style*="var(--status-speaking)"],.avatar__07f91[style*="var(--status-speaking)"]{box-shadow: inset 0 0 0 2px var(--hsl-main)!Important;}
+.preview__5d148{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);box-shadow:0 0 0 2px var(--hsl-main);}
+.preview__3e443{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);box-shadow:0 0 0 2px var(--hsl-main);}
+.wrapper__4d7bb{background:var(--bg);box-shadow:0 0 0 2px var(--hsl-main);}
+.gradient__8e08c{background:var(--bg);box-shadow:0 0 0 2px var(--hsl-main);}
+.container_cd0f26{background:var(--bg);box-shadow:0 0 0 2px var(--hsl-main);}
+.card_ac86f6{background:var(--bg);box-shadow:0 0 0 2px var(--hsl-main);}
+.numberBadge__2b1f5,.textBadge__2b1f5{box-shadow:none!important;}
 .fakeEdges_b26b79:before,.fakeEdges_b26b79:after{content: unset;}
 .mediaBarWrapper_b26b79,.mediaBarProgress_b26b79{border-radius: 3px;}
-.switchIndicator_a28278:not([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:var(--hsl) !Important;}
-.switchIndicator_a28278:is([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:hsl(from var(--hsl)h s l/0.2) !Important;}
-.searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
-.headingCard__50a54{background:var(--bg)!Important;border:none;box-shadow:0 0 0 2px var(--hsl);}
-.tabBar__133bf .addFriend__133bf.addFriend__133bf.addFriend__133bf{background-color:hsl(from var(--hsl)h s l/1);color:var(--text-subtle);border:none;}
+.switchIndicator_a28278:not([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:var(--hsl-main)!Important;}
+.switchIndicator_a28278:is([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:hsl(from var(--hsl-main)h s l/0.2)!Important;}
+.searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
+.headingCard__50a54{background:var(--bg)!Important;border:none;box-shadow:0 0 0 2px var(--hsl-main);}
+.tabBar__133bf .addFriend__133bf.addFriend__133bf.addFriend__133bf{background-color:hsl(from var(--hsl-main)h s l/1);color:var(--text-subtle);border:none;}
 /* scrollbar color guh */
-:is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb{background-color:var(--hsl);}
-:is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb:active{background-color:var(--hsl);}
-.custom-user-profile-theme::-webkit-scrollbar-thumb{background-color:var(--hsl);}
-.scrollableContainer__74017::-webkit-scrollbar-thumb{background-color:var(--hsl);}
+:is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb{background-color:var(--hsl-main);}
+:is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb:active{background-color:var(--hsl-main);}
+.custom-user-profile-theme::-webkit-scrollbar-thumb{background-color:var(--hsl-main);}
+.scrollableContainer__74017::-webkit-scrollbar-thumb{background-color:var(--hsl-main);}
 /* broken or not updated; gonna fix it at some point ig; */
-:is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
-.menu_c1e9c4{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+:is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
+.menu_c1e9c4{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
 /* !^ this stuff not sorted/checked yet; can't be bothered rn. */
-.checkmark__714a9{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.checkmark__714a9{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
 /* add your css down here; or somewhere else; idc.... */
