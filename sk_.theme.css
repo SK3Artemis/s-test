@@ -6,7 +6,7 @@
  * @website /vanityurl/dotcom/steakpants/flour/flower/index11.html
 */ /* inspired by (pasted from) cv5/cv6/cv7/simple color/discord+/gradients for cv6/modern indicators/kaleidoscope */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&family=Coda&family=BioRhyme&family=Share+Tech+Mono&family=Karla:wght@400;500;600;700&family=Roboto:wght@300;400;900&display=swap");
-:root { /* this theme is made to be used with the default discord ash/dark theme since i dont have nitro and dont wanna make it compatible with other ones */
+:root { /* made to be used with the default discord ash/dark theme */
 	--name: "!SK_";	/* theme name */
 	--ver: "2.0.6";	/* @version ? */
 	--col: #7300ff;	/* main color */
@@ -30,7 +30,7 @@
 	--accent: #1e63b3;	/* gradient color accent */
 	--dir: 130deg;		/* angle of gradient */
 } /* wowie crazie theme changin; */
-.theme-dark,.theme-light,.sk_theme{ /* add more theme definitions here if needed.... (im lazy to add them) */
+.theme-dark,.theme-light,.sk_theme{
 	--gr: linear-gradient(var(--dir),var(--bg),var(--col)); /* defining gradient here to ctrl+c/v it later */
 	--bg: hsla(var(--hsl-hue), calc(var(--sat) * 50%), var(--light), var(--alpha));	/* hue shift i guess;  */
 	--bg-shade:hsl(from var(--bg-0) h calc(var(--sat, 1) * s) l/calc(var(--shade) * 0.4));	/* bg opacity; */
@@ -65,7 +65,7 @@
 } /* background css from ClearVisionV67 */
 :is(html,body,.appMount_51fd7){background:none;}
 :is(.root_bfe55a,.container__5e434){background:var(--bg-0);border:none;box-shadow:none;}
-.container__5aa3a [xmlns="http://www.w3.org/2000/svg"]{display:none;} /* this removes that annoying transparent svg overlay in the vc background */
+.container__5aa3a [xmlns="http://www.w3.org/2000/svg"]{display:none;} /* removes that annoying transparent svg overlay in the vc background */
 .bg__960e4{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:-1;}
 .root_bfe55a{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
 .sidebar__5e434{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attach);filter:var(--bg-filter);z-index:0;}
@@ -107,7 +107,7 @@
 .vc-pindms-collapse-icon{color:currentColor;}
 .vc-card-base{background:var(--bg);border:none;}
 .vc-addon-card{background:var(--bg);border:none;}
-/* .vc-btn-primary{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);} */ /* this makes some stuff look weird */
+/* .vc-btn-primary{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);} */ /* makes some stuff look weird */
 .vc-settings-quickActions-pill:hover{box-shadow:none;border:1px solid var(--hsl-main);}
 .vc-settings-quickActions-pill{background:var(--gr)!important;border:1px solid #000;}
 .vc-plugin-ui-elements-modal-content{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
@@ -248,11 +248,11 @@ nav.panels__5e434{margin-bottom:0!important;}
 .channel__972a0.interactive__972a0.interactiveSelected__972a0:after,
 .numberBadge__2b1f5,
 .textBadge__2b1f5,
-.lookFilled__201d5, /* might clash with .button_... or .buttonColor_... */
+.lookFilled__201d5,
 .lookFilled__201d5.colorBrand__201d5,
 .lookFilled__201d5.colorGreen__201d5,
 .lookFilled__201d5.colorPrimary__201d5,
-.lookOutlined__201d5, /* there are some weird color artifacts in here but idk how to fix it */
+.lookOutlined__201d5,
 .lookOutlined__201d5.colorBrand__201d5,
 .lookOutlined__201d5.colorGreen__201d5,
 .lookOutlined__201d5.colorPrimary__201d5,
@@ -260,7 +260,7 @@ nav.panels__5e434{margin-bottom:0!important;}
 .circleIconButton__5bc7e,
 .childWrapper__6e9f8,
 .newMessagesBar__0f481,
-.sk_theme[style*="background-color:"]{background:var(--gr)!important;} /* .sk_theme is a placeholder class in case of incompatibility weirdness (im too lazy to figure out why) */
+.sk_theme[style*="background-color:"]{background:var(--gr)!important;}
 .bar_a562c8,
 .barFill_a562c8,
 .mediaBarGrabber_b26b79,
@@ -268,8 +268,8 @@ nav.panels__5e434{margin-bottom:0!important;}
 .mediaBarProgress_b26b79:before,
 .mediaBarProgress_b26b79:after,
 .bubble_b26b79,
-.bd-slider-track, /* didnt want to make this theme bd compatible but tried.... */
-.sk_theme[style*="background-color:"]{background:linear-gradient(var(--dir),var(--accent),var(--col))!important;}/* not having a placehoder class like .sk_theme will break it btw.... */
+.bd-slider-track,
+.sk_theme[style*="background-color:"]{background:linear-gradient(var(--dir),var(--accent),var(--col))!important;}
 .headerText__99e7c::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, currentColor 50%, transparent);margin-right:5px;}
 .headerText__99e7c::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, currentColor 50%, transparent);margin-left:5px;}
 .members_c8ffbb .membersWrap_c8ffbb:not([style*="color: rgb"], #MemberCount h3) span,
@@ -289,14 +289,17 @@ nav.panels__5e434{margin-bottom:0!important;}
 .interactive__972a0.interactiveSelected__972a0::before{right:0;background:var(--gr)!important;}
 .colorDefault_c1e9c4:active:not(.hideInteraction_c1e9c4){background:var(--gr)!important;}
 .colorDefault_c1e9c4.focused_c1e9c4{background:var(--gr)!important;}
-.primary_a22cb0{border-color:var(--bg-0);background:var(--gr)!important;} /* this coloring (gradient) affects all buttons smh */
-.secondary_a22cb0{background:var(--bg-0);border-color:var(--hsl-main);} /* <-- if you want to change the button color do it here ^ */
+.primary_a22cb0{background:var(--gr)}/* this affects all buttons smh */
+.primary_a22cb0:hover{background:var(--gr)!important;border:2px solid var(--hsl-main);}
+.secondary_a22cb0{background:var(--gr);}/* also affects all buttons; */
+.secondary_a22cb0:hover{background:var(--gr);border:2px solid var(--hsl-main);}
 .active_caf372{background:var(--gr)!important;}
 /* some discord stuff and other weird shit */
+:is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
 [class^="vc-margin-"] .vc-btn-base.vc-btn-primary.vc-btn-medium{background:var(--gr)!important;border:1px solid #000;}
 [class^="vc-margin-"] .vc-btn-base.vc-btn-primary.vc-btn-medium:hover{border:1px solid var(--hsl-main);}
-[data-mana-component="button"].vc-btn-base.vc-btn-primary.vc-btn-medium{background:var(--gr)!important;border:1px solid #000;}
-[data-mana-component="button"].vc-btn-base.vc-btn-primary.vc-btn-medium:hover{border:1px solid var(--hsl-main);}
+[data-mana-component="button"][class="vc-btn-base vc-btn-primary vc-btn-medium"] {background:var(--gr)!important;border:1px solid #000;}
+[data-mana-component="button"][class="vc-btn-base vc-btn-primary vc-btn-medium"]:hover{border:1px solid var(--hsl-main);}
 .backgroundImages__4d7bb{display:none;}
 .game_cc46f0{background:#FFFFFF08!Important;border:none;}
 .perkCard_b62c4e{background:#FFFFFF08!Important;border:none;}
@@ -320,8 +323,5 @@ nav.panels__5e434{margin-bottom:0!important;}
 :is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb:active{background-color:var(--hsl-main);}
 .custom-user-profile-theme::-webkit-scrollbar-thumb{background-color:var(--hsl-main);}
 .scrollableContainer__74017::-webkit-scrollbar-thumb{background-color:var(--hsl-main);}
-/* broken or not updated; gonna fix it at some point ig; */
-.menu_c1e9c4{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
-/* !^ this stuff not sorted/checked yet; can't be bothered rn. */
-.checkmark__714a9{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
+/* gonna fix it at some point ig; can't be bothered rn; */
 /* add your css down here; or somewhere else; idc.... */
