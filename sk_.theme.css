@@ -80,8 +80,10 @@
 .chatContent_f75fb0,.scroller__99e7c{background:hsl(from var(--bg-shade) h s l/calc(var(--shade) * 0.4))!important;}
 .chatContent_f75fb0{background:var(--bg-0);}
 .content__5e434{background:var(--bg);} 
-.channelTextArea__74017:focus-within{border-color:var(--bg-0);box-shadow:0 0 0 2px var(--hsl-main);}
-.channelTextArea__74017{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);}
+.channelTextArea__74017:focus-within{border-color:var(--bg-0);box-shadow:0 0 0 1px var(--hsl-main);}
+.channelTextArea__74017{box-shadow:0 0 0 2px rgb(30,30,30);background-color:var(--bg);background:var(--bg);}
+.channelTextArea__74017:after{display:block;content:'';border-bottom:2px solid var(--hsl-main);transform:scaleX(0);}
+.channelTextArea__74017:not(:focus-within):hover:after{opacity:0.5;transform:scaleX(1);}
 .scrollableContainer__74017{background-color:var(--bg);}
 .container_a2f514{background:var(--hsl-bg);}
 .privacyTermsCard__6de8b{background:var(--bg)!important;}
@@ -105,7 +107,7 @@
 .vc-pindms-collapse-icon{color:currentColor;}
 .vc-card-base{background:var(--bg);border:none;}
 .vc-addon-card{background:var(--bg);border:none;}
-.vc-btn-primary{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
+/* .vc-btn-primary{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);} */ /* this makes some stuff look weird */
 .vc-settings-quickActions-pill:hover{box-shadow:none;border:1px solid var(--hsl-main);}
 .vc-settings-quickActions-pill{background:var(--gr)!important;border:1px solid #000;}
 .vc-plugin-ui-elements-modal-content{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
@@ -143,6 +145,7 @@
 .marketingButtonBackgroundNew__4ed1a,.newBadge__4ed1a{display:none;}
 .shopMarketingTooltipContent__4ed1a{display:none;}
 .container_c0c49a{display:none;}
+.notice__29487{display:none;}
 .popover_d6f39b{display:none;}
 .popover_d6f39b.popover--video_d6f39b{display:none;}
 .container_a62383.popoverGradientWrapper_d6f39b{display:none;}
@@ -289,7 +292,11 @@ nav.panels__5e434{margin-bottom:0!important;}
 .primary_a22cb0{border-color:var(--bg-0);background:var(--gr)!important;} /* this coloring (gradient) affects all buttons smh */
 .secondary_a22cb0{background:var(--bg-0);border-color:var(--hsl-main);} /* <-- if you want to change the button color do it here ^ */
 .active_caf372{background:var(--gr)!important;}
-/* some discord stuff */
+/* some discord stuff and other weird shit */
+[class^="vc-margin-"] .vc-btn-base.vc-btn-primary.vc-btn-medium{background:var(--gr)!important;border:1px solid #000;}
+[class^="vc-margin-"] .vc-btn-base.vc-btn-primary.vc-btn-medium:hover{border:1px solid var(--hsl-main);}
+[data-mana-component="button"].vc-btn-base.vc-btn-primary.vc-btn-medium{background:var(--gr)!important;border:1px solid #000;}
+[data-mana-component="button"].vc-btn-base.vc-btn-primary.vc-btn-medium:hover{border:1px solid var(--hsl-main);}
 .backgroundImages__4d7bb{display:none;}
 .game_cc46f0{background:#FFFFFF08!Important;border:none;}
 .perkCard_b62c4e{background:#FFFFFF08!Important;border:none;}
@@ -314,7 +321,6 @@ nav.panels__5e434{margin-bottom:0!important;}
 .custom-user-profile-theme::-webkit-scrollbar-thumb{background-color:var(--hsl-main);}
 .scrollableContainer__74017::-webkit-scrollbar-thumb{background-color:var(--hsl-main);}
 /* broken or not updated; gonna fix it at some point ig; */
-:is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
 .menu_c1e9c4{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
 /* !^ this stuff not sorted/checked yet; can't be bothered rn. */
 .checkmark__714a9{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
