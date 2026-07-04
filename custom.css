@@ -1,5 +1,5 @@
-:root {/* !SK_VRCX Midnight Violet */
-	--info: "!SK_VRCX";
+:root{ /* !SK_VRCX Midnight Violet */
+	--info: "!SK_VRCX"; /* message */
 	--bg: url("https://sk3artemis.github.io/s-test/images/Untitled.png");
 	--sk: #7300FF; /* accent color */
 	--text: #CCCCFF; /* text color */
