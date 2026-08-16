@@ -34,8 +34,8 @@
 	</div>
     <div class="toolbar" style="display: flex; gap: 6px; padding: 8px; background: #262626; border-bottom: 1px solid #3b3b3b;">
         <button id="backButton" disabled>Back</button>
-        <button onclick="loadDirectory("");">Root</button>
-        <button onclick="cache.delete(`${branch}:${currentPath}`);loadDirectory(currentPath, true);">Refresh</button>
+        <button id="rootButton">Root</button>
+        <button id="refreshButton">Refresh</button>
     </div>
     <div id="breadcrumbs" style="display: flex; align-items: center; gap: 4px; min-height: 40px; padding: 6px 10px; background: #202020; border-bottom: 1px solid #3b3b3b; overflow-x: auto; white-space: nowrap;"></div>
     <div style="padding: 8px; border-bottom:1px solid #3b3b3b; background: #242424;">
@@ -71,6 +71,8 @@ const breadcrumbs = document.getElementById("breadcrumbs");
 const status = document.getElementById("status");
 const selection = document.getElementById("selection");
 const selectButton = document.getElementById("selectButton");
+const refreshButton = document.getElementById("refreshButton");
+const rootButton = document.getElementById("rootButton");
 
 function detectRepository() {
     const hostname = window.location.hostname;
@@ -254,14 +256,17 @@ function updateSelection() {
 }
 
 function downloadEntry(entry) {
-    const githubUrl = entry.html_url;
-    if (!githubUrl) {
-        alert("GitHub did not provide a URL for this entry.");
+    if (!entry.html_url) {
+        alert("URL Not Provided");
         return;
     }
-    const rootDirectory = entry.type === "dir" ? entry.name : "false";
-    const fileName = entry.name;
-    const downloadUrl = CONFIG.downloadProxy + "?url=" + encodeURIComponent(githubUrl) + "&fileName=" +encodeURIComponent(fileName) + "&rootDirectory=" +encodeURIComponent(rootDirectory);
+    if (entry.type === "file") {
+        const rawUrl = "https://github.com/" + encodeURIComponent(owner) + "/" + encodeURIComponent(repository) + "/raw/" + encodeURIComponent(branch) + "/" + entry.path.split("/").map(part => encodeURIComponent(part)).join("/");
+        window.open(rawUrl, "_blank", "noopener,noreferrer");
+        return;
+    }
+    const rootDirectory = entry.name;
+    const downloadUrl = CONFIG.downloadProxy + "?url=" + encodeURIComponent(entry.html_url) + "&fileName=" + encodeURIComponent(entry.name) + "&rootDirectory=" + encodeURIComponent(rootDirectory);
     window.open(downloadUrl, "_blank", "noopener,noreferrer");
 }
 
@@ -282,6 +287,17 @@ backButton.addEventListener("click", () => {
         const parts = currentPath.split("/").filter(Boolean);
         parts.pop();
         loadDirectory(parts.join("/"));
+    }
+);
+
+rootButton.addEventListener("click", () => {
+        loadDirectory("");
+    }
+);
+
+refreshButton.addEventListener("click", () => {
+        cache.delete(`${branch}:${currentPath}`);
+        loadDirectory(currentPath, true);
     }
 );
 
