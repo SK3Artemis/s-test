@@ -7,7 +7,6 @@
     <style>
         * {box-sizing: border-box;}
         html, body {margin: 0; width: 100%; height: 100%; font-family: Arial, Helvetica, sans-serif; background: #181818; color: #eee;}
-        .browser {background: #222; border: 1px solid #444; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);}
         button {border: 1px solid #4a4a4a; background: #333; color: #eee;cursor: pointer; font-size: 13px;}
         button:hover {background: #414141;}
         button:disabled {opacity: 0.4; cursor: default;}
@@ -25,28 +24,19 @@
     </style>
 </head>
 <body>
-<div class="browser">
-    <div class="titlebar" style="height: 46px; display: flex; align-items: center; padding: 0 15px; background: #2b2b2b; border-bottom: 1px solid #444; font-size: 13px; font-weight: bold;">
-		<span class="status" id="status" style="font-size: 12px; font-weight: normal; color: #999;">Connecting....</span>
-	</div>
-    <div class="toolbar" style="display: flex; gap: 6px; padding: 8px; background: #262626; border-bottom: 1px solid #3b3b3b;">
+<div class="browser" style="background: #222; border: 1px solid #444; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);">
+    <div class="titlebar" style="height:46px;display:flex;align-items:center;padding:0 15px;background:#2b2b2b;border-bottom:1px solid #444;font-size:13px;font-weight:bold;"><span id="status">Connecting....</span></div>
+    <div style="display: flex; gap: 6px; padding: 8px; background: #262626; border-bottom: 1px solid #3b3b3b;">
         <button id="backButton" disabled>Back</button>
         <button id="rootButton">Root</button>
         <button id="refreshButton">Refresh</button>
     </div>
-    <div id="breadcrumbs" style="display: flex; align-items: center; gap: 4px; min-height: 40px; padding: 6px 10px; background: #202020; border-bottom: 1px solid #3b3b3b; overflow-x: auto; white-space: nowrap;"></div>
+    <div id="pathIndex" style="display: flex; align-items: center; gap: 4px; min-height: 40px; padding: 6px 10px; background: #202020; border-bottom: 1px solid #3b3b3b; overflow-x: auto; white-space: nowrap;"></div>
     <div style="padding: 8px; border-bottom:1px solid #3b3b3b; background: #242424;">
-		<input id="searchInput" type="text" placeholder="Search this folder...." autocomplete="off" style="width: 100%; padding: 8px 10px; border: 1px solid #444; outline: none; background: #181818; color: white;">
+		<input id="searchInput" type="text" placeholder="Search...." autocomplete="off" style="width: 100%; padding: 8px 10px; border: 1px solid #444; outline: none; background: #181818; color: white;">
 	</div>
     <div id="fileList" style="flex: 1; overflow-y: auto; position: relative;">
         <div class="loading">Loading repository....</div>
-    </div>
-    <div style="min-height: 58px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #292929; border-top: 1px solid #444;">
-        <div style="flex: 1; min-width: 0;">
-            <div style="font-size: 11px; color: #888;">Selected</div>
-            <div id="selection" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px;">Nothing</div>
-        </div>
-        <button id="selectButton" style="background: #3a6ea5; border-color: #5188c4; font-weight: bold;" disabled>Select</button>
     </div>
 </div>
 <script>
@@ -64,10 +54,8 @@ let currentEntries = [];
 let selectedEntry = null;
 const cache = new Map();
 const fileList = document.getElementById("fileList");
-const breadcrumbs = document.getElementById("breadcrumbs");
+const pathIndex = document.getElementById("pathIndex");
 const status = document.getElementById("status");
-const selection = document.getElementById("selection");
-const selectButton = document.getElementById("selectButton");
 const refreshButton = document.getElementById("refreshButton");
 const rootButton = document.getElementById("rootButton");
 
@@ -129,7 +117,6 @@ async function loadDirectory(path = "", forceRefresh = false) {
     currentPath = path;
 	updateTitle();
     selectedEntry = null;
-    updateSelection();
     fileList.innerHTML = `<div class="loading">Loading....</div>`;
     try {
         const cacheKey = `${branch}:${path}`;
@@ -208,12 +195,12 @@ function renderDirectory(entries) {
 }
 
 function renderBreadcrumbs() {
-    breadcrumbs.innerHTML = "";
+    pathIndex.innerHTML = "";
     const root = document.createElement("button");
     root.className = "breadcrumb";
-    root.textContent = "Repository Root";
+    root.textContent = "Root";
     root.addEventListener("click", () => loadDirectory(""));
-    breadcrumbs.appendChild(root);
+    pathIndex.appendChild(root);
     if (!currentPath) {
         return;
     }
@@ -223,14 +210,14 @@ function renderBreadcrumbs() {
         const separator = document.createElement("span");
         separator.className = "separator";
         separator.textContent = "›";
-        breadcrumbs.appendChild(separator);
+        pathIndex.appendChild(separator);
         accumulated += (accumulated ? "/" : "") + part;
         const path = accumulated;
         const button = document.createElement("button");
         button.className = "breadcrumb";
         button.textContent = part;
         button.addEventListener("click", () => loadDirectory(path));
-        breadcrumbs.appendChild(button);
+        pathIndex.appendChild(button);
     });
 }
 
@@ -239,17 +226,6 @@ function selectEntry(entry) {
     document.querySelectorAll(".entry").forEach(element => {
 		element.classList.toggle("selected", element.dataset.path === entry.path);
 	});
-    updateSelection();
-}
-
-function updateSelection() {
-    if (!selectedEntry) {
-        selection.textContent = "Nothing";
-        selectButton.disabled = true;
-        return;
-    }
-    selection.textContent = selectedEntry.path;
-    selectButton.disabled = false;
 }
 
 function downloadEntry(entry) {
@@ -295,29 +271,6 @@ rootButton.addEventListener("click", () => {
 refreshButton.addEventListener("click", () => {
         cache.delete(`${branch}:${currentPath}`);
         loadDirectory(currentPath, true);
-    }
-);
-
-selectButton.addEventListener("click", () => {
-        if (!selectedEntry) {
-            return;
-        }
-        const result = {
-            name : selectedEntry.name,
-            path : selectedEntry.path,
-            type : selectedEntry.type,
-            size : selectedEntry.size || 0,
-            url : selectedEntry.html_url || null,
-            download_url : selectedEntry.download_url || null,
-            repository : `${owner}/${repository}`,
-            branch : branch
-        };
-        window.selectedFile = result;
-        window.parent.postMessage({
-			type : "file-selected",
-			file : result
-		}, "*");
-        console.log("Selected File: ", result);
     }
 );
 
