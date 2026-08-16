@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="titleText">File Index of /</title>
+    <style>
+        * {box-sizing: border-box;}
+        html, body {margin: 0; width: 100%; height: 100%; font-family: Arial, Helvetica, sans-serif; background: #181818; color: #eee;}
+        .browser {background: #222; border: 1px solid #444; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);}
+        button {border: 1px solid #4a4a4a; background: #333; color: #eee;cursor: pointer; font-size: 13px;}
+        button:hover {background: #414141;}
+        button:disabled {opacity: 0.4; cursor: default;}
+        .breadcrumb {border: 0; background: transparent; color: #bbb;}
+        .breadcrumb:hover {color: white; background: #333;}
+        .separator {color: #666;}
+        .search input:focus {border-color: #777;}
+        .entry {display: grid; grid-template-columns: 32px minmax(0, 1fr) 100px 100px; align-items: center; min-height: 42px; padding: 0 12px; border-bottom: 1px solid #2e2e2e; cursor: pointer; user-select: none;}
+        .entry:hover {background: #303030;}
+        .entry.selected {background: #3b4d63;}
+        .name {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+        .type {color: #888; font-size: 12px; padding-left: 20px;}
+        .loading, .error, .empty {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #999; padding: 30px; text-align: center;}
+        .error {color: #e88;}
+        .select-button {}
+        .select-button:hover {background: #4780bd;}
+    </style>
+</head>
+<body>
+<div class="browser">
+    <div class="titlebar" style="height: 46px; display: flex; align-items: center; padding: 0 15px; background: #2b2b2b; border-bottom: 1px solid #444; font-size: 13px; font-weight: bold;">
+		<span id="titleText">File Index of /</span>
+		<span class="status" id="status" style="margin-left: auto; font-size: 12px; font-weight: normal; color: #999;">Connecting....</span>
+	</div>
+    <div class="toolbar" style="display: flex; gap: 6px; padding: 8px; background: #262626; border-bottom: 1px solid #3b3b3b;">
+        <button id="backButton" disabled>Back</button>
+        <button onclick="loadDirectory("");">Root</button>
+        <button onclick="cache.delete(`${branch}:${currentPath}`);loadDirectory(currentPath, true);">Refresh</button>
+    </div>
+    <div id="breadcrumbs" style="display: flex; align-items: center; gap: 4px; min-height: 40px; padding: 6px 10px; background: #202020; border-bottom: 1px solid #3b3b3b; overflow-x: auto; white-space: nowrap;"></div>
+    <div style="padding: 8px; border-bottom:1px solid #3b3b3b; background: #242424;">
+		<input id="searchInput" type="text" placeholder="Search this folder...." autocomplete="off" style="width: 100%; padding: 8px 10px; border: 1px solid #444; outline: none; background: #181818; color: white;">
+	</div>
+    <div id="fileList" style="flex: 1; overflow-y: auto; position: relative;">
+        <div class="loading">Loading repository....</div>
+    </div>
+    <div style="min-height: 58px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #292929; border-top: 1px solid #444;">
+        <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 11px; color: #888;">Selected</div>
+            <div id="selection" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px;">Nothing</div>
+        </div>
+        <button id="selectButton" style="background: #3a6ea5; border-color: #5188c4; font-weight: bold;" disabled>Select</button>
+    </div>
+</div>
+<script>
+"use strict";
+const CONFIG = {
+    downloadProxy : "https://sk3artemis.github.io/DownGit/#/home",
+    branch: null,
+    cacheResults: true
+};
+let owner = null;
+let repository = null;
+let branch = null;
+let currentPath = "";
+let currentEntries = [];
+let selectedEntry = null;
+const cache = new Map();
+const fileList = document.getElementById("fileList");
+const breadcrumbs = document.getElementById("breadcrumbs");
+const status = document.getElementById("status");
+const selection = document.getElementById("selection");
+const selectButton = document.getElementById("selectButton");
+
+function detectRepository() {
+    const hostname = window.location.hostname;
+    const pathname = window.location.pathname;
+    if (!hostname.endsWith(".github.io")) {
+        throw new Error("Could not determine the GitHub repository from this URL. If you are using a custom domain, configure owner and repository in detectRepository()");
+    }
+    owner = hostname.substring(0, hostname.length - ".github.io".length);
+    const parts = pathname.split("/").filter(Boolean);
+    if (parts.length > 0) {
+        repository = parts[0];
+    } else {
+        repository = owner + ".github.io";
+    }
+}
+
+async function githubRequest(path) {
+    const encodedPath = path.split("/").map(part => encodeURIComponent(part)).join("/");
+    let url = `https://api.github.com/repos/` + `${encodeURIComponent(owner)}/` + `${encodeURIComponent(repository)}/` + `contents/${encodedPath}`;
+    if (branch) {
+        url += `?ref=${encodeURIComponent(branch)}`;
+    }
+    const response = await fetch(url, {
+		headers: {"Accept" : "application/vnd.github+json"}
+	});
+    if (!response.ok) {
+        let message;
+        try {
+            const data = await response.json();
+            message = data.message;
+        } catch {
+            message = response.statusText;
+        }
+        throw new Error(`GitHub API Error ` + `${response.status}: ${message}`
+        );
+    }
+    return response.json();
+}
+
+async function loadRepositoryInfo() {
+    const url = `https://api.github.com/repos/` + `${encodeURIComponent(owner)}/` + `${encodeURIComponent(repository)}`;
+    const response = await fetch(url, {
+		headers: {"Accept" : "application/vnd.github+json"}
+	});
+    if (!response.ok) {
+        throw new Error(`Repository "${owner}/${repository}" ` + `Not Found`);
+    }
+    const data = await response.json();
+    if (!branch) {
+        branch = data.default_branch;
+    }
+    status.textContent = `${owner}/${repository} · ${branch}`;
+}
+
+const backButton = document.getElementById("backButton");
+async function loadDirectory(path = "", forceRefresh = false) {
+    currentPath = path;
+	updateTitle();
+    selectedEntry = null;
+    updateSelection();
+    fileList.innerHTML = `<div class="loading">Loading....</div>`;
+    try {
+        const cacheKey = `${branch}:${path}`;
+        let entries;
+        if (CONFIG.cacheResults && !forceRefresh && cache.has(cacheKey)) {
+            entries = cache.get(cacheKey);
+        } else {
+            entries = await githubRequest(path);
+            if (!Array.isArray(entries)) {
+                entries = [entries];
+            }
+            if (CONFIG.cacheResults) {
+                cache.set(cacheKey, entries);
+            }
+        }
+        entries.sort((a, b) => {
+            if (a.type === "dir" && b.type !== "dir") {
+                return -1;
+            }
+            if (a.type !== "dir" && b.type === "dir") {
+                return 1;
+            }
+            return a.name.localeCompare(b.name, undefined, {numeric: true, sensitivity: "base"});
+        });
+        currentEntries = entries;
+        renderDirectory(entries);
+        renderBreadcrumbs();
+        backButton.disabled = currentPath === "";
+    } catch (error) {
+        renderError(error.message);
+        console.error(error);
+    }
+}
+
+function renderError(message) {
+    fileList.innerHTML = `<div class="error">${escapeHtml(message)}</div>`;
+}
+
+function renderDirectory(entries) {
+    fileList.innerHTML = "";
+    if (entries.length === 0) {
+        fileList.innerHTML = `<div class="empty">This Folder is Empty</div>`;
+        return;
+    }
+    for (const entry of entries) {
+        const element = document.createElement("div");
+        element.className = "entry";
+        element.dataset.path = entry.path;
+        const type = entry.type === "dir" ? "Folder" : formatFileSize(entry.size);
+        element.innerHTML = `
+            <div class="name">${escapeHtml(entry.name)}</div>
+            <div class="type">${escapeHtml(type)}</div>
+            <button class="download" type="button" title="Download ${escapeHtml(entry.name)}" style="justify-self: end; padding: 5px 9px; font-size: 12px;">Download</button>
+        `;
+        const downloadButton = element.querySelector(".download");
+        downloadButton.addEventListener("click", event => {
+                event.stopPropagation();
+                downloadEntry(entry);
+            }
+        );
+        element.addEventListener("dblclick", () => {
+                if (entry.type === "dir") {
+                    loadDirectory(entry.path);
+                } else {
+                    selectEntry(entry);
+                }
+            }
+        );
+        element.addEventListener("click", () => {
+                selectEntry(entry);
+            }
+        );
+        fileList.appendChild(element);
+    }
+    applySearch();
+}
+
+function renderBreadcrumbs() {
+    breadcrumbs.innerHTML = "";
+    const root = document.createElement("button");
+    root.className = "breadcrumb";
+    root.textContent = "Repository Root";
+    root.addEventListener("click", () => loadDirectory(""));
+    breadcrumbs.appendChild(root);
+    if (!currentPath) {
+        return;
+    }
+    const parts = currentPath.split("/").filter(Boolean);
+    let accumulated = "";
+    parts.forEach(part => {
+        const separator = document.createElement("span");
+        separator.className = "separator";
+        separator.textContent = "›";
+        breadcrumbs.appendChild(separator);
+        accumulated += (accumulated ? "/" : "") + part;
+        const path = accumulated;
+        const button = document.createElement("button");
+        button.className = "breadcrumb";
+        button.textContent = part;
+        button.addEventListener("click", () => loadDirectory(path));
+        breadcrumbs.appendChild(button);
+    });
+}
+
+function selectEntry(entry) {
+    selectedEntry = entry;
+    document.querySelectorAll(".entry").forEach(element => {
+		element.classList.toggle("selected", element.dataset.path === entry.path);
+	});
+    updateSelection();
+}
+
+function updateSelection() {
+    if (!selectedEntry) {
+        selection.textContent = "Nothing selected";
+        selectButton.disabled = true;
+        return;
+    }
+    selection.textContent = selectedEntry.path;
+    selectButton.disabled = false;
+}
+
+function downloadEntry(entry) {
+    const githubUrl = entry.html_url;
+    if (!githubUrl) {
+        alert("GitHub did not provide a URL for this entry.");
+        return;
+    }
+    const rootDirectory = entry.type === "dir" ? entry.name : "false";
+    const fileName = entry.name;
+    const downloadUrl = CONFIG.downloadProxy + "?url=" + encodeURIComponent(githubUrl) + "&fileName=" +encodeURIComponent(fileName) + "&rootDirectory=" +encodeURIComponent(rootDirectory);
+    window.open(downloadUrl, "_blank", "noopener,noreferrer");
+}
+
+const searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", applySearch);
+function applySearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    document.querySelectorAll(".entry").forEach(element => {
+            const name = element.querySelector(".name").textContent.toLowerCase();
+            element.style.display = !query || name.includes(query) ? "" : "none";
+	});
+}
+
+backButton.addEventListener("click", () => {
+        if (!currentPath) {
+            return;
+        }
+        const parts = currentPath.split("/").filter(Boolean);
+        parts.pop();
+        loadDirectory(parts.join("/"));
+    }
+);
+
+selectButton.addEventListener("click", () => {
+        if (!selectedEntry) {
+            return;
+        }
+        const result = {
+            name : selectedEntry.name,
+            path : selectedEntry.path,
+            type : selectedEntry.type,
+            size : selectedEntry.size || 0,
+            url : selectedEntry.html_url || null,
+            download_url : selectedEntry.download_url || null,
+            repository : `${owner}/${repository}`,
+            branch : branch
+        };
+        window.selectedFile = result;
+        window.parent.postMessage({
+			type : "file-selected",
+			file : result
+		}, "*");
+        console.log("Selected File: ", result);
+    }
+);
+
+function formatFileSize(bytes) {
+    if (!bytes) {
+        return "";
+    }
+    const units = ["B", "KB", "MB", "GB"];
+    let size = bytes;
+    let unit = 0;
+    while (size >= 1024 && unit < units.length - 1) {
+        size /= 1024;
+        unit++;
+    }
+    return (size.toFixed(unit === 0 ? 0 : 1) + " " + units[unit]);
+}
+
+function escapeHtml(value) {
+    return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+}
+
+function updateTitle() {
+    const titleText = document.getElementById("titleText");
+    if (!currentPath) {
+        titleText.textContent = "File Index of /";
+        return;
+    }
+    titleText.textContent = `File Index of /${currentPath.replace(/^\/+|\/+$/g, "")}/`;
+}
+
+async function initialize() {
+    try {
+        detectRepository();
+        status.textContent = `${owner}/${repository}`;
+        await loadRepositoryInfo();
+        await loadDirectory("");
+    } catch (error) {
+        renderError(error.message);
+        status.textContent = "Error";
+        console.error(error);
+    }
+}
+initialize();
+</script>
+</body>
+</html>
