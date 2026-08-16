@@ -16,6 +16,9 @@
         .separator {color: #666;}
         .search input:focus {border-color: #777;}
         .type {color: #888; font-size: 12px; padding-left: 20px;}
+		.entry {display:grid; grid-template-columns: 32px minmax(0,1fr) 90px 110px; align-items:center; min-height:42px; padding:0 12px; border-bottom:1px solid #2e2e2e; cursor:pointer; user-select:none;}
+        .entry:hover {background: #303030;}
+        .entry.selected {background: #3b4d63;}
         .loading, .error, .empty {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #999; padding: 30px; text-align: center;}
         .error {color: #e88;}
         .select-button:hover {background: #4780bd;}
@@ -242,7 +245,7 @@ function selectEntry(entry) {
 
 function updateSelection() {
     if (!selectedEntry) {
-        selection.textContent = "Nothing selected";
+        selection.textContent = "Nothing";
         selectButton.disabled = true;
         return;
     }
