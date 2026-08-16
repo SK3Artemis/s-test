@@ -178,9 +178,9 @@ function renderDirectory(entries) {
         element.dataset.path = entry.path;
         const type = entry.type === "dir" ? "Folder" : formatFileSize(entry.size);
 		element.innerHTML = `
-			<div class="entry" title="${escapeHtml(entry.name)}" style=" min-width:0;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(entry.name)}</div>
-			<div style="color:#888;font-size:12px;padding-left:20px;white-space:nowrap;">${escapeHtml(type)}</div>
-			<button type="button" style="justify-self:end;border:1px solid #4a4a4a;background:#333;color:#eee;padding:5px 9px;border-radius:4px;cursor:pointer;font-size:12px;white-space:nowrap;">Download</button>
+			<div class="name" title="${escapeHtml(entry.name)}" style=" min-width:0;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(entry.name)}</div>
+			<div class="type" style="color:#888;font-size:12px;padding-left:20px;white-space:nowrap;">${escapeHtml(type)}</div>
+			<button class="download" type="button" style="justify-self:end;border:1px solid #4a4a4a;background:#333;color:#eee;padding:5px 9px;border-radius:4px;cursor:pointer;font-size:12px;white-space:nowrap;">Download</button>
 		`;
         const downloadButton = element.querySelector(".download");
         downloadButton.addEventListener("click", event => {
