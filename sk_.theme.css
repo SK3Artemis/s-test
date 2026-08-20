@@ -1,52 +1,49 @@
-/**
+/**great thanks to the ppl in the vencord theme-development channel <#1134844326933954622>
  * @name !SK_
+ * @version 2.0.9
  * @author SK_Artemis
  * @description [ThemeAttributes Plugin Required!] Interesting....
- * @version 2.0.8
  * @website /vanityurl/dotcom/steakpants/flour/flower/index11.html
 */ /* inspired by (pasted from) cv5/cv6/cv7/simple color/discord+/gradients for cv6/modern indicators/kaleidoscope */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&family=Coda&family=BioRhyme&family=Share+Tech+Mono&family=Karla:wght@400;500;600;700&family=Roboto:wght@300;400;900&display=swap");.sk_theme{}	/* add to/change this to have ur preferred fonts; gonna be using .sk_theme{} to fix weird css interaction and highlighting.... */
-/* made to be used with the default discord ash/dark/onyx themes; please use the default app icon as well */ /* would have done this if i was evil --> .theme-light{display:none!important;} */
-:root,#app-mount,.theme-midnight,.theme-dark,.theme-light,.sk_theme{--brand-experiment:undefined;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&family=Coda&family=BioRhyme&family=Share+Tech+Mono&family=Karla:wght@400;500;600;700&family=Roboto:wght@300;400;900&display=swap");.sk_theme{}
+/* made to be used with the default discord ash/dark/onyx themes; */ /* would have done this if i was evil --> .theme-light{display:none!important;} */
+:root,#app-mount,.theme-midnight,.theme-dark,.theme-light,.images-dark,.images-light,.sk_theme{ /* gonna be using the placeholder: .sk_theme{} to fix weird css interaction and highlighting */
 	--name: "!SK_";	/* theme @name ? */
-	--ver: "2.0.8";	/* @version ? */
+	--version: "2.0.9";	/* @version ? */
 	--author:"SK_Artemis";/* @author ? */
 	--col: #7300ff;	/* main color */
 	--hsl-hue: 267;	/* hue? (hsl) */
 	--saturation: 1;/* saturation */
 	--shading: 100%;/* shading */
 	--alpha: 0.6;	/* opacity */
-	--light: .5%;/* brightness */
 	--image: url("https://sk3artemis.github.io/s-test/images/Untitled.png"); /* high quality: https://sk3artemis.github.io/s-test/images/562961.png */
 	--bg-pos: center;	/* background position */
 	--bg-size: cover;	/* background size changin */
 	--bg-attachment: fixed;	/* idk wat this is for */
 	--bg-filter: saturate(calc(var(--saturation, 1) * 1)); /* filtering shit */
-	--bg-transparency: #0000;/* bg transparency (dont change pls) */
-	--gif-picker: 0.125 / 1;	/* resize gif picker aspect ratio */
+	--gif-picker-aspect-ratio: 0.125 / 1; /* resize gif picker aspect ratio */
 	--normal-text: #d8d8db;	/* text coloring */
 	--muted-text: #aeaeb4;	/* text coloring */
+	--channel-text-color: #aaaaa5f0;/* channel text coloring */
 	--main-font: "gg sans", "Helvetica Neue", "Noto Sans Symbols 2", "Roboto", 'Karla', BioRhyme, Coda, Whitney, Helvetica, Arial, Consolas, sans-serif;/* fonts must be installed */
 	--code-font: "gg mono", "Share Tech Mono", "Liberation Mono", Menlo, Courier, Consolas, monospace; /* fonts for codeblocks */ /* fonts must be installed or loaded via @import */
-	--logo: "░██████╗██╗░░██ ██╔════╝██║░██║ ╚█████╗░█████═╝ ░╚═══██╗██╔═██╗ ██████╔╝██║░╚██ ╚═════╝░╚═╝░░═╝ ";
-	--accent: #FF00FF;	/* gradient color accent */
+	--logo: "╔██████╗██╗░░██╗ ██╔════╝██║░██╔╝ ╚█████╗░█████═╝ ░╚═══██╗██╔═██╗ ██████╔╝██║░╚██╗ ╚═════╝░╚═╝░░╚═╝";
+	--accent: #FF00FF;	/* text and gradient color accent */
 	--dir: 130deg;		/* angle of gradient */
 	/* toggle stuff here i guess;....  1=true/enabled; 0=false/disabled; */
 	--version-info: 1;
 	--dashless-addon: 1;
 	--modern-indicators: 1;
 	--small-user-thingy: 1;
-	--channel-highlighter: 0;
-	--see-style-attributes: 0; /* variable name explains it i guess */
-	--where-are-my-textures: 0; /* you forgot to download textures */
-	--user-thingy-bg: 1; /* toggles snowflake background from that small user thingy; idk what to call it */
-	--background-off: 0; /* turns background off and sets color to transparent */
+	--channel-resizings: 1;
+	--where-are-my-textures: 0;	/* you forgot to download textures */
+	--see-content-style-attributes: 0;/* variable name explains it */
 	/* wowie crazie theme changin */
-	--gr: linear-gradient(var(--dir),var(--bg),var(--col));	/* defining gradient here */
-	--bg: hsla(var(--hsl-hue), calc(var(--saturation) * 50%), var(--light), var(--alpha));	/* hue stuff i guess */
-	--bg-shade:hsl(from var(--bg-transparency) h calc(var(--saturation, 1) * s) l/calc(var(--shading) * 0.4)); /* bg opacity */
-	--hsl-bg: hsl(from var(--light) h calc(var(--saturation, 1) * s) l/alpha);	/* shade? brightness i guess */
-	--hsl-main: hsl(from var(--col) h calc(var(--saturation, 1) * s) l/alpha);	/* color changin stuff */
+	--gr: linear-gradient(var(--dir),var(--bg),var(--col));	/* #define gradient */
+	--bg: hsla(var(--hsl-hue), calc(var(--saturation) * 50%), .5%, var(--alpha));	/* shaded bg */
+	--bg-shade:hsl(from transparent h calc(var(--saturation, 1) * s) l/calc(var(--shading) * 0.4)); /* transparent bg */
+	--image-bg: var(--image,#000) var(--bg-pos) / var(--bg-size) no-repeat;	/* #define background image */
+	--hsl: hsl(from var(--col) h calc(var(--saturation, 1) * s) l/alpha);	/* color changin stuff; */
 	/* SET DEFAULTS */
 	--background-surface-highest: var(--bg);	/* set background color */
 	--background-surface-higher: var(--bg);		/* set background color */
@@ -55,13 +52,13 @@
 	--background-base-lower: var(--bg);			/* set background color */
 	--background-base-low: var(--bg);			/* set background color */
 	--background-floating: var(--bg)!important;/* set background color */
-	--background-primary: var(--image) var(--bg-pos) / var(--bg-size) no-repeat;	/* affects OpenAsar backgrond btw. */
+	--background-primary: var(--image,#000) var(--bg-pos) / var(--bg-size) no-repeat;	/* affects OpenAsar backgrond btw. */
 	--background-secondary: var(--bg);		/* set background color */
 	--background-secondary-alt: var(--bg);	/* set background color */
 	--background-tertiary: var(--bg);		/* set background color */
-	--text-link: var(--hsl-main);	/* link color */
+	--text-link: var(--hsl);	/* link color */
 	--header-primary: var(--col);	/* affects OpenAsar text color */
-	--font-code: var(--code-font);	/* used by code-embeds and ShikiCodeBlocks by default (can be overridden in it's settings) */ /* i dont use shikicodeblocks and wont fix problems with it */
+	--font-code: var(--code-font);	/* used by code-embeds and ShikiCodeBlocks by default */
 	--font-primary: var(--main-font);
 	--font-display: var(--main-font);
 	--text-default: hsl(from var(--normal-text) h calc(var(--saturation, 1) * s) l/alpha);
@@ -71,119 +68,108 @@
 	--indicator-unread-mention: var(--red-400-hsl);
 	--indicator-selected: var(--pink-900-hsl);
 	--indicator-connected: var(--green-700-hsl);
---leave-this-empty:#; /* <-- this a color select but weird */
 } /* background css from ClearVisionV5.6.7 */
-:is(html,body,.appMount_51fd7){background:none;}
-:is(.root_bfe55a,.container__5e434){background:var(--bg-transparency);border:none;box-shadow:none;}
-.container__5aa3a [xmlns="http://www.w3.org/2000/svg"]{display:none;} /* removes that annoying transparent svg overlay in the vc background */
-.bg__960e4{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attachment);filter:var(--bg-filter);z-index:-1;}
-.root_bfe55a{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attachment);filter:var(--bg-filter);z-index:0;}
-.sidebar__5e434{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attachment);filter:var(--bg-filter);z-index:0;}
-.videoGrid_a21736{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attachment);filter:var(--bg-filter);z-index:0;}
-.app_a3002d{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;}
-.app__160d8{background:hsl(from var(--hsl-bg) h s l/calc(var(--saturation) * 0.1));}
-.wrapper_ef3116{margin-bottom:var(--app-height);background:var(--bg-transparency);padding-top:10px;}
-.header__49fc1,.content__49fc1,.footer__49fc1{background:var(--bg-transparency);}
-.wanderingCubes__46696 .item__46696,.path__46696{background:var(--hsl-main);}
-.chat_f75fb0{background:var(--bg-transparency);}
-.chatContent_f75fb0,.scroller__99e7c{background:hsl(from var(--bg-shade) h s l/calc(var(--shading) * 0.4))!important;}
-.chatContent_f75fb0{background:var(--bg-transparency);}
-.content__5e434{background:var(--bg);}
+:is(html,body,#app-mount),.container__133bf{background:none;}
+:is(.root_bfe55a,.container__5e434){background:transparent;border:none;box-shadow:none;}
+.container__5aa3a [xmlns="http://www.w3.org/2000/svg"],/* <-- removes the svg gradient overlay in the vc background */.backgroundImages__4d7bb{display:none;}
+.root_bfe55a,.sidebar__5e434,.videoGrid_a21736,.container__2637a{background:var(--image-bg);background-attachment:var(--bg-attachment);filter:var(--bg-filter);z-index:0;}
+.bg__960e4{background:var(--image-bg);background-attachment:var(--bg-attachment);filter:var(--bg-filter);z-index:-1;}
+.app_a3002d{background:var(--image,#000) var(--bg-pos) / var(--bg-size) no-repeat;color:transparent;}
+.app__160d8{background:hsl(from var(--bg-shade) h s l/calc(var(--saturation) * 0.1));}
+.header__49fc1,.content__49fc1,.footer__49fc1{background:transparent;}
+.wanderingCubes__46696 .item__46696,.path__46696,.progress__06283,.viewChannelButtonWrapper_e4503a>.button_a22cb0,.textBadge__463b7:is(.live_a7acae),[class^="filter_"]{background:var(--hsl)!Important;}
+.chat_f75fb0{background:transparent;}
+.chatContent_f75fb0,.scroller__99e7c{background:var(--bg-shade)!important;}
+.chatContent_f75fb0{background:transparent;}
+.content__5e434,.flexCenter_abf706,.panel_b08638{background:var(--bg);}
 .channelTextArea__74017{box-shadow:0 0 0 1px #212121;background:#000!important;}
-.channelTextArea__74017:focus-within{border-color:var(--bg-transparency);box-shadow:0 0 0 1px var(--hsl-main);}
-.channelTextArea__74017:after{display:block;content:'';border-bottom:2px solid var(--hsl-main);transform:scaleX(0);}
+.channelTextArea__74017:focus-within{border-color:transparent;box-shadow:0 0 0 1px var(--hsl);}
+.channelTextArea__74017:after{display:block;content:'';border-bottom:2px solid var(--hsl);transform:scaleX(0);}
 .channelTextArea__74017:not(:focus-within):hover:after{opacity:0.5;transform:scaleX(1);}
-.scrollableContainer__74017{background-color:var(--bg);}
-.container_a2f514{background:var(--hsl-bg);}
+.scrollableContainer__74017{background:transparent;background-color:var(--bg);}
+.container_a2f514{background:var(--bg-shade);}
 .privacyTermsCard__6de8b{background:var(--bg)!important;}
-.mentioned__5126c{--bg-m:hsl(from var(--hsl-main)h s l/.1);background:var(--bg-m);}
-.mentioned__5126c:before{background-color:var(--hsl-main);}
-.container_c8ffbb{background:none;border:none;}
-.membersWrap_c8ffbb{background:none;border:none;}
-.members_c8ffbb{background:hsl(from var(--bg-shade)h s l/calc(var(--shading) * 0.3));}
-.membersGroup_c8ffbb{display:flex;color:var(--hsl-main);font-weight:700;align-items:center;}
+.mentioned__5126c{--bg-m:hsl(from var(--hsl)h s l/.1);background:var(--bg-m);}
+.mentioned__5126c:before{background-color:var(--hsl);}
+.membersWrap_c8ffbb,.container_c8ffbb{background:none;border:none;}
+.members_c8ffbb{background:var(--bg-shade);box-shadow:0 0 0 1px #222;}
+.membersGroup_c8ffbb{display:flex;color:var(--hsl);font-weight:700;align-items:center;}
 .membersGroup_c8ffbb:before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left,currentColor 50%,transparent);margin-right:5px;}
 .membersGroup_c8ffbb:after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right,currentColor 50%,transparent);margin-left:5px;}
-.label__409aa{color:var(--hsl-main)!important;margin:0 5px;}
-.sectionLabel__409aa::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, var(--hsl-main) 50%, transparent);}
-.sectionLabel__409aa::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, var(--hsl-main) 50%, transparent);}
-.wrapper__72c38{background:var(--bg-shade);border-color:var(--hsl-main);}
-.wrapper__72c38:not([data-read-only="true"]):has(input:focus,textarea:focus){border-color:var(--hsl-main);box-shadow:0 0 2px 0 var(--hsl-main);outline:2px solid var(--hsl-main);}
+.label__409aa{color:var(--hsl)!important;margin:0 5px;}
+.sectionLabel__409aa::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, var(--hsl) 50%, transparent);}
+.sectionLabel__409aa::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, var(--hsl) 50%, transparent);}
+.wrapper__72c38{background:var(--bg-shade);border-color:var(--hsl);}
+.wrapper__72c38:not([data-read-only="true"]):has(input:focus,textarea:focus){border-color:var(--hsl);box-shadow:0 0 2px 0 var(--hsl);outline:2px solid var(--hsl);}
 /* some stuff might be broken idk; */
 /* vencord/equicord specific stuff */
-:is(.theme-dark,.theme-light) #vc-spotify-player{background:var(--bg-transparency);}
-.vc-shiki-root{background-color:var(--bg-transparency)!important;}/** set shikicodeblocks background color to none/transparent */
-.vc-shiki-btn{background-color:var(--hsl-main)!important;}
+:is(.theme-dark,.theme-light) #vc-spotify-player{background:#0000;}
+.vc-shiki-root{background-color:transparent!important;}/** shikicodeblocks background */
+.vc-shiki-code{background-color:var(--bg)!important;}
+.vc-shiki-btn{background-color:var(--hsl)!important;}
 .vc-notification-root{background:var(--bg);}
 .vc-pindms-collapse-icon{color:currentColor;}
-.vc-card-base{background:var(--bg);border:none;}
-.vc-addon-card{background:var(--bg);border:none;}
-.vc-btn-primary{background:var(--bg);border:none;} /* makes some stuff look weird */
-.vc-settings-quickActions-pill:hover{box-shadow:none;border:1px solid var(--hsl-main);}
+.vc-card-base,.vc-addon-card,.vc-btn-primary{background:var(--bg);border:none;} /* makes some stuff look weird */
+.vc-settings-quickActions-pill:hover{box-shadow:none;border:1px solid var(--hsl);}
 .vc-settings-quickActions-pill{background:var(--gr)!important;border:1px solid #000;}
-.vc-plugin-ui-elements-modal-content{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
-.vc-plugin-ui-elements-button:hover{background:var(--bg);border:1px solid var(--hsl-main);}
-.vc-switch-container.vc-switch-checked{background:var(--hsl-main) !important;}
-.vc-switch-container{background:hsl(from var(--hsl-main)h s l/0.2)!important;}
+.vc-plugin-ui-elements-modal-content{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.vc-plugin-ui-elements-button:hover{background:var(--bg);border:1px solid var(--hsl);}
+.vc-switch-container.vc-switch-checked{background:var(--hsl) !important;}
+.vc-switch-container{background:hsl(from var(--hsl)h s l/0.2)!important;}
 /* equicord specific weirdness be happening here */ /* i hate css; */
-.vc-switch-container.vc-switch-checked .vc-switch-indicator{background:var(--hsl-main) !important;}
-.vc-switch-container .vc-switch-indicator{background:hsl(from var(--hsl-main)h s l/0.2)!important;}
+.vc-switch-container.vc-switch-checked .vc-switch-indicator{background:var(--hsl) !important;}
+.vc-switch-container>.vc-switch-indicator{background:hsl(from var(--hsl)h s l/0.2)!important;}
 /* idk how to fix the switch background on equicord; without making a theme just for equicord.... */
 /* betterdiscord specific stuff */ /* i dont use bd or equicord so in case of errors don't ask me */
-.bd-box{background:hsl(from var(--hsl-main)h s l/0.2);}
-.bd-box.selected{background:var(--hsl-main);}
-.bd-button.bd-button:is(.selected){background:var(--hsl-main);}
-.bd-container{background:var(--bg);border-color:var(--hsl-main);}
+.bd-box{background:hsl(from var(--hsl)h s l/0.2);}
+.bd-box.selected{background:var(--hsl);}
+.bd-button.bd-button:is(.selected){background:var(--hsl);}
+.bd-container{background:var(--bg);border-color:var(--hsl);}
 .bd-settings-title{background:var(--gr);}
-.bd-store-card{background:var(--shading);border:1px solid var(--bg-transparency);}
-.bd-store-card:hover{background:var(--shading);box-shadow:none;border-color:var(--hsl-main);}
-.bd-addon-card{background:var(--bg);border: 2px solid var(--bg-transparency);}
-.bd-addon-card:hover{background:var(--bg);border-color:var(--hsl-main);}
+.bd-store-card{background:var(--shading);border:1px solid transparent;}
+.bd-store-card:hover{background:var(--shading);box-shadow:none;border-color:var(--hsl);}
+.bd-addon-card{background:var(--bg);border: 2px solid transparent;}
+.bd-addon-card:hover{background:var(--bg);border-color:var(--hsl);}
 .bd-addon-header,.bd-description-wrap,.bd-footer{background:var(--bg);}
-.bd-switch .bd-switch-body{background:hsl(from var(--hsl-main)h s l/0.2);}
-.bd-switch.bd-switch-checked .bd-switch-body{background:var(--hsl-main);}
-.bd-modal-root{background:var(--bg);border:2px solid var(--hsl-main);}
-.bd-modal-footer{background:var(--bg-transparency);}
-.bd-addon-store-card{background:var(--bg);border:1px solid var(--bg-transparency);}
-.bd-addon-store-card:hover{background:var(--bg);box-shadow:none;border-color:var(--hsl-main);}
-.bd-addon-store-card .bd-addon-store-card-tag{background:var(--bg-transparency);border:1px solid var(--hsl-main);}
+.bd-switch .bd-switch-body{background:hsl(from var(--hsl)h s l/0.2);}
+.bd-switch.bd-switch-checked .bd-switch-body{background:var(--hsl);}
+.bd-modal-root{background:var(--bg);border:2px solid var(--hsl);}
+.bd-modal-footer{background:transparent;}
+.bd-addon-store-card{background:var(--bg);border:1px solid transparent;}
+.bd-addon-store-card:hover{background:var(--bg);box-shadow:none;border-color:var(--hsl);}
+.bd-addon-store-card .bd-addon-store-card-tag{background:transparent;border:1px solid var(--hsl);}
 .bd-addon-store-card .bd-addon-store-card-body{background:hsl(from #000 h s l/alpha);}
 .bd-button-filled.bd-button-color-brand{background:var(--gr);}
 /* 'annoying stuff'/adverts/nitro/shop/quests/"discord games" removal.... */
 .container__8279f{background-image:none!important;} /* forgot what this was for; leaving it in anyway */
 .clickable__81391[aria-label*="Last Meadow Online"],/* leavin this in for whenever they gonna bring back games; */
-.premiumFeatureBorder__65c15,
+.premiumFeatureBorder__65c15,.upsellContainer__5997d,
 .marketingButtonBackgroundNew__4ed1a,.newBadge__4ed1a,
 .shopMarketingTooltipContent__4ed1a,.badge_c2b88c,
 .mainContainer__700c9, /* voice call banner image */
-.container_c0c49a,
-.notice__29487,
-.wrapper__19b5e,
-.wrapper__553bf, /* quests button */
+.overlayButtonContainer__2f4f7, /* vc zoom visual */
+.sectionHeader__784a7,.card__784a7, /* advert */
+.container_c0c49a,.notice__29487,.wrapper__19b5e,
 .container_a62383.popoverGradientWrapper_d6f39b,
 .popover_d6f39b,.popover_d6f39b.popover--video_d6f39b,
-.interactive_f88cfd.interactive__972a0.linkButton__972a0:has([data-list-item-id*="___shop"]), /* shop button */
-.vc-settings-tab .vc-card-base.vc-card-normal.vc-special-card.vc-special-card-special, /* vencord donate banner in settings */
-.vc-settings-tab .vc-card-base.vc-card-primary.vc-special-card.vc-special-card-special, /* equicord donate banner in settings */
+[class^="channel_"]>div>[href="/shop"], /* shop button */
+[class^="channel_"]>div>[href="/quest-home"], /* quests button */
+.blockedSystemMessage__7a70a>.iconContainer__235ca, /* blocked message [X] icon (it's disabled anyway so why do i see it?) */
+.vc-settings-tab>.vc-card-base.vc-card-normal.vc-special-card.vc-special-card-special, /* vencord donate banner in settings */
+.vc-settings-tab>.vc-card-base.vc-card-primary.vc-special-card.vc-special-card-special, /* equicord donate banner in settings */
 .sk_theme{display:none!important;}
 /* info text in top left; theme version and author / SK logo in settings version info */ @container style(--version-info: 1){.sk_theme{}
-.leading_c38106::before{content:var(--name)" v"var(--ver);position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--col);order:2;filter:drop-shadow(0 0 5px var(--asdf));}
-.clickable__973df::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
-.clickable__973df::after{content:var(--name)" v"var(--ver)" by "var(--author);color:var(--text-muted);position:relative;font-size:12px;} /* Vencord's Web Extension Version Info */
-.clickable__081d7::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
-.clickable__081d7::after{content:var(--name)" v"var(--ver)" by "var(--author);color:var(--text-muted);position:relative;font-size:10px;} /* Vencord / Equicord Version Info */
-.bd-version-info::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);}
-.bd-version-info::after{content:var(--name)" v"var(--ver)" by "var(--author);color:var(--text-muted);position:relative;font-size:12px;} /* BetterDiscord Version Info */
+.leading_c38106::before{content:var(--name)" v"var(--version);position:static;margin-left:10px;font-size:16px;font-weight:600;color:var(--col);order:2;}
+[class*="clickable_"]:has([class*="versionHash"])::before,.bd-version-info::before{content:var(--logo);color:var(--col);font-size:12px;line-height:1.3333333333;font-weight:400;font-family:var(--font-primary);} /* SK */
+[class*="clickable_"]:has([class*="versionHash"])::after,.bd-version-info::after{content:var(--name)" v"var(--version)" by "var(--author);color:var(--text-muted);position:relative;font-size:12px;} /* Version Info */
 }@container style(--small-user-thingy: 1){.sk_theme{} /* some other changes/fixes (small user thingy) / idk how to call this;.... */
+.wrapper_ef3116{margin-bottom:var(--app-height);background:transparent;padding-top:10px;} /* colour themes break this selector */
 .visual-refresh section.panels__5e434{left:calc(var(--custom-guild-list-width) + var(--space-xs));width:calc(100% - var(--custom-guild-list-width) - var(--space-xs)*2);box-sizing:content-box;}
-nav.panels__5e434{margin-bottom:0!important;}}.panels__5e434{background:#000!important;}
-@container style(--user-thingy-bg: 1){.sk_theme{} /* those snowflake like things that float up ig;.... */
-.container__37e49:before{content:"bg";color:transparent;position:fixed;width:14vw;height:2vw;background:url("https://sk3artemis.github.io/s-test/images/bg.svg");}
-.container__37e49:after{display:none;}.wrapper_e131a9 button{padding:0;}
-} /* gif picker resizing and transparent gif favorite button */
+nav.panels__5e434{margin-bottom:0!important;}}.panels__5e434{background:url("https://sk3artemis.github.io/s-test/images/bg.svg")!important;width:100%;left:0;bottom:0;border-radius:0;}.wrapper_e131a9>button{padding:0;}
+/* gif picker resizing and transparent gif favorite button */
 [class*='gifFavoriteButton_b7e1cb']{background-color:transparent;}
 [class*="expressionPickerPositionLayer__74017"] [class*="positionContainer__08434"]{height:calc(75vh - 100px);}
-[class*="expressionPickerPositionLayer__74017"] [class*="drawerSizingWrapper__08434"]{max-height:100%;bottom:0px;height:auto;aspect-ratio:var(--gif-picker);}
+[class*="expressionPickerPositionLayer__74017"] [class*="drawerSizingWrapper__08434"]{max-height:100%;bottom:0px;height:auto;aspect-ratio:var(--gif-picker-aspect-ratio);}
 @container style(--dashless-addon: 1){ /* dashless addon and custom font: https://github.com/Vendicated/random-files */
 @font-face{font-family:"Twemoji Mozilla";src:url("https://vendicated.github.io/random-files/Twemoji.Mozilla.ttf") format("truetype");unicode-range:U+1F1E6-1F1FF;}
 @font-face{font-family:"dashless";src:url("https://vendicated.github.io/random-files/Dashless.woff2") format("woff2");size-adjust:100%;unicode-range: U+002D;}
@@ -199,8 +185,8 @@ nav.panels__5e434{margin-bottom:0!important;}}.panels__5e434{background:#000!imp
 	[class^=placeholder][class*=slateTextArea], /* chat input placeholder text */
 	[class^=auditLog_] [class^=overflowEllipsis_] strong, /* audit log */
 	.vc-permviewer-perms-title, /* permissionsviewer */
-	[class^=headerChannelContainer_] > div /* invite to channel dialog */
-{font-family:"Twemoji Mozilla","dashless",var(--font-primary);}
+	[class^=headerChannelContainer_] > div, /* invite to channel dialog */
+.sk_theme{font-family:"Twemoji Mozilla","dashless",var(--font-primary);}
 } /* Updates Discord's indicators to feel more modern. by LuckFire */
 /* @import url("https://discord-extensions.github.io/modern-indicators/src/source.css"); */
 @container style(--modern-indicators: 1){.sk_theme{}:root{
@@ -219,49 +205,48 @@ nav.panels__5e434{margin-bottom:0!important;}}.panels__5e434{background:#000!imp
 	--ich-bg:hsla(var(--indicator-connected) / 0.25);
 }/* would not recommend re-using this but it works */
 .containerDefault_c69b6d,.containerDragBefore_c69b6d{margin:2px 0;border-radius:0;border-left:2px solid transparent;}
-.containerDefault_c69b6d .link__2ea32,.containerDragBefore_c69b6d .link__2ea32{background:transparent!important;}
+.containerDefault_c69b6d>.link__2ea32,.containerDragBefore_c69b6d>.link__2ea32{background:transparent!important;}
 .containerDefault_c69b6d.wrapper__2ea32,.containerDragBefore_c69b6d.wrapper__2ea32{padding-left:8px;}
 .containerDefault_c69b6d:hover,.containerDragBefore_c69b6d:hover{background-color:var(--ih);}
 .containerDefault_c69b6d:has(.modeSelected__2ea32),.containerDragBefore_c69b6d:has(.modeSelected__2ea32){border-left-color:var(--isb);background-color:var(--is-bg);}
 .containerDefault_c69b6d:has(.modeSelected__2ea32):hover,.containerDragBefore_c69b6d:has(.modeSelected__2ea32):hover{background-color:var(--ish-bg);}
-.containerDefault_c69b6d:has(.modeSelected__2ea32) .link__2ea32 svg,.containerDragBefore_c69b6d:has(.modeSelected__2ea32) .link__2ea32 svg{color:var(--isb);}
+.containerDefault_c69b6d:has(.modeSelected__2ea32)>.link__2ea32 svg,.containerDragBefore_c69b6d:has(.modeSelected__2ea32)>.link__2ea32 svg{color:var(--isb);}
 .containerDefault_c69b6d:has(.modeUnreadImportant__2ea32),.containerDragBefore_c69b6d:has(.modeUnreadImportant__2ea32){border-left-color:var(--iub);background-color:var(--iu-bg);}
 .containerDefault_c69b6d:has(.modeUnreadImportant__2ea32):hover,.containerDragBefore_c69b6d:has(.modeUnreadImportant__2ea32):hover{background-color:var(--iuh-bg);}
-.containerDefault_c69b6d:has(.modeUnreadImportant__2ea32) .link__2ea32 svg,.containerDragBefore_c69b6d:has(.modeUnreadImportant__2ea32) .link__2ea32 svg{color:var(--iub);}
+.containerDefault_c69b6d:has(.modeUnreadImportant__2ea32)>.link__2ea32 svg,.containerDragBefore_c69b6d:has(.modeUnreadImportant__2ea32)>.link__2ea32 svg{color:var(--iub);}
 .containerDefault_c69b6d:has(.mentionsBadge__933a1),.containerDragBefore_c69b6d:has(.mentionsBadge__933a1){border-left-color:var(--iumb);background-color:var(--ium-bg);}
 .containerDefault_c69b6d:has(.mentionsBadge__933a1):hover,.containerDragBefore_c69b6d:has(.mentionsBadge__933a1):hover{background-color:var(--iumh-bg);}
-.containerDefault_c69b6d:has(.mentionsBadge__933a1) .link__2ea32 svg,.containerDragBefore_c69b6d:has(.mentionsBadge__933a1) .link__2ea32 svg{color:var(--iumb);}
+.containerDefault_c69b6d:has(.mentionsBadge__933a1)>.link__2ea32 svg,.containerDragBefore_c69b6d:has(.mentionsBadge__933a1)>.link__2ea32 svg{color:var(--iumb);}
 .containerDefault_c69b6d:has(.modeConnected__2ea32),.containerDragBefore_c69b6d:has(.modeConnected__2ea32){border-left-color:var(--icb);background-color:var(--ic-bg);}
 .containerDefault_c69b6d:has(.modeConnected__2ea32):hover,.containerDragBefore_c69b6d:has(.modeConnected__2ea32):hover{background-color:var(--ich-bg);}
-.containerDefault_c69b6d:has(.modeConnected__2ea32) .link__2ea32 svg,.containerDragBefore_c69b6d:has(.modeConnected__2ea32) .link__2ea32 svg{color:var(--icb);}
-.containerDefault_c69b6d .unread__2ea32,.containerDragBefore_c69b6d .unread__2ea32{display:none;}
+.containerDefault_c69b6d:has(.modeConnected__2ea32)>.link__2ea32 svg,.containerDragBefore_c69b6d:has(.modeConnected__2ea32)>.link__2ea32 svg{color:var(--icb);}
+.containerDefault_c69b6d>.unread__2ea32,.containerDragBefore_c69b6d>.unread__2ea32{display:none;}
 .voiceChannelHighlightBorder_c69b6d,.voiceChannelHighlightGlow_c69b6d{display:none;}
-.container__5b40b .spineBorder__5b40b{left:24px;}
+.container__5b40b>.spineBorder__5b40b{left:24px;}
 .navItem__551b0{margin:2px 0;padding-left:8px;border-radius:0;border-left:2px solid transparent;}
 .navItem__551b0:hover{background-color:var(--ih);}
-.navItem__551b0.selected__551b0{border-left-color:var(--isb);color:var(--interactive-active);background-color:var(--is-bg);}
-.navItem__551b0.selected__551b0 svg{color:var(--isb);}
+.navItem__551b0.selected__551b0{border-left-color:var(--isb);color:var(--text-default);background-color:var(--is-bg);svg{color:var(--isb);}}
 .channel__972a0{max-width:unset;margin:2px 0;padding:0 0 0 8px;border-radius:0;border-left:2px solid transparent;}
 .channel__972a0:hover{background-color:var(--ih);}
 .channel__972a0:has(.selected_bf202d){border-left-color:var(--isb);background-color:var(--is-bg);}
 .channel__972a0:has(.selected_bf202d):hover{background-color:var(--ish-bg);}
-.channel__972a0:has(.selected_bf202d) .linkButtonIcon__972a0,.channel__972a0:has(.selected_bf202d) .closeButton__972a0{color:var(--isb);}
+.channel__972a0:has(.selected_bf202d)>.linkButtonIcon__972a0,.channel__972a0:has(.selected_bf202d)>.closeButton__972a0{color:var(--isb);}
 .channel__972a0:has(.highlighted__20a53){border-left-color:var(--iub);background-color:var(--iu-bg);}
 .channel__972a0:has(.highlighted__20a53):hover{background-color:var(--iuh-bg);}
-.channel__972a0:has(.highlighted__20a53) .linkButtonIcon__972a0,.channel__972a0:has(.highlighted__20a53) .closeButton__972a0{color:var(--iub);}
-.channel__972a0 .interactive_bf202d{background:transparent;}}
-@container style(--channel-highlighter: 1){.sk_theme{}/* edit to channel and category stuff ig; */
-.link__2ea32,#channels>ul>li.container__5b40b>ul>li>div>div{padding-block:1px;}/* channel size*/
-.containerDefault_c69b6d.selected_c69b6d .link__2ea32{margin-left:5px;}
+.channel__972a0:has(.highlighted__20a53)>.linkButtonIcon__972a0,.channel__972a0:has(.highlighted__20a53)>.closeButton__972a0{color:var(--iub);}
+.channel__972a0>.interactive_bf202d{background:transparent;}}
+@container style(--channel-resizings: 1){.sk_theme{}/* edit to channel and category stuff ig; */
+.link__2ea32,#channels>ul>li.container__5b40b>ul>li>div>div{padding-block:2px;}/* channel size*/
+.containerDefault_c69b6d.selected_c69b6d>.link__2ea32{margin-left:5px;}
 .wrapper__2ea32{padding-block:1px);} /* <-- channel spacing ^ */
 .iconContainer__2ea32>svg[role="img"]{scale:0.9;}/* channel icon scale */
-.wrapper__29444{padding-left:8px!important;}/* shift category labels left*/}
-/* ### Gradients for Clearvision v6.3.0 by Nyx ### */ /* had to fix this */
-.unread__3b95d:after,
+.wrapper__29444{padding-left:8px!important;}/* shift category labels left*/
+}/* ### Gradients for Clearvision v6.3.0 by Nyx ### *//* had to fix this */
 .bar__3b95d:after,
+.unread__3b95d:after,
 .channel__972a0.interactive__972a0.interactiveSelected__972a0:after,
-.numberBadge__2b1f5,
-.textBadge__2b1f5,
+.textBadge__2b1f5,.textBadge__463b7:not(.live_a7acae),
+.numberBadge__463b7,
 .lookFilled__201d5,
 .lookFilled__201d5.colorBrand__201d5,
 .lookFilled__201d5.colorGreen__201d5,
@@ -272,8 +257,10 @@ nav.panels__5e434{margin-bottom:0!important;}}.panels__5e434{background:#000!imp
 .lookOutlined__201d5.colorPrimary__201d5,
 .item__58105,
 .circleIconButton__5bc7e,
-.childWrapper__6e9f8,
 .newMessagesBar__0f481,
+.childWrapper__6e9f8,
+.colorDefault_c1e9c4:active:not(.hideInteraction_c1e9c4),
+.colorDefault_c1e9c4.focused_c1e9c4,
 .sk_theme[style*="background-color:"]{background:var(--gr)!important;}
 .bar_a562c8,
 .barFill_a562c8,
@@ -286,54 +273,54 @@ nav.panels__5e434{margin-bottom:0!important;}}.panels__5e434{background:#000!imp
 .sk_theme[style*="background-color:"]{background:linear-gradient(var(--dir),var(--accent),var(--col))!important;}
 .headerText__99e7c::before{content:"";height:2px;flex-grow:1;background:linear-gradient(to left, currentColor 50%, transparent);margin-right:5px;}
 .headerText__99e7c::after{content:"";height:2px;flex-grow:1;background:linear-gradient(to right, currentColor 50%, transparent);margin-left:5px;}
-.members_c8ffbb .membersWrap_c8ffbb:not([style*="color: rgb"], #MemberCount h3) span,
-.privateChannelsHeaderContainer__99e7c .headerText__99e7c{background-image:linear-gradient(var(--dir),var(--col))!important;-webkit-background-clip:text;color:transparent!important;
+.members_c8ffbb>.membersWrap_c8ffbb:not([style*="color: rgb"], #MemberCount h3) span,
+.privateChannelsHeaderContainer__99e7c>.headerText__99e7c{background-image:linear-gradient(var(--dir),var(--col))!important;-webkit-background-clip:text;color:transparent!important;
 display:flex;text-transform:uppercase;font-size:14px;font-weight:700;align-items:center;}
-.members_c8ffbb .membersGroup_c8ffbb:not([style*="color: rgb"]):before,
-.privateChannels__35e86 .privateChannelsHeaderContainer__99e7c:before{background:linear-gradient(to left, var(--col) 50%, transparent)!important;}
-.members_c8ffbb .membersGroup_c8ffbb:not([style*="color: rgb"]):after,
-.privateChannels__35e86 .privateChannelsHeaderContainer__99e7c:after{background:linear-gradient(to right, var(--col) 50%, transparent)!important;}
+.members_c8ffbb>.membersGroup_c8ffbb:not([style*="color: rgb"]):before,
+.privateChannels__35e86>.privateChannelsHeaderContainer__99e7c:before{background:linear-gradient(to left, var(--col) 50%, transparent)!important;}
+.members_c8ffbb>.membersGroup_c8ffbb:not([style*="color: rgb"]):after,
+.privateChannels__35e86>.privateChannelsHeaderContainer__99e7c:after{background:linear-gradient(to right, var(--col) 50%, transparent)!important;}
 .interactive__972a0::before{content:"";position:absolute;top:0;right:100%;bottom:0;left:0;z-index:-1;}/* some additional gradients ig; */
 .interactive__972a0.interactiveSelected__972a0::before{right:0;background:var(--gr)!important;}
-.colorDefault_c1e9c4:active:not(.hideInteraction_c1e9c4){background:var(--gr)!important;}
-.colorDefault_c1e9c4.focused_c1e9c4{background:var(--gr)!important;}
-.primary_a22cb0{background:var(--gr)}/* <-- this affects all buttons smh */
-.primary_a22cb0:hover{background:var(--gr)!important;border:2px solid var(--hsl-main);}
-.secondary_a22cb0{background:var(--bg);border:2px solid var(--hsl-main);}	/* this also affects all buttons; */
-.secondary_a22cb0:hover{background:var(--gr);border:2px solid var(--hsl-main);}
+.primary_a22cb0{background:var(--gr)}/* <-- this affects all buttons; --> */.primary_a22cb0:hover{background:var(--gr)!important;border:2px solid var(--hsl);}
+.secondary_a22cb0{background:var(--bg);border:2px solid var(--hsl);}/* <-- this also affects all buttons; --> */.secondary_a22cb0:hover{background:var(--gr);border:2px solid var(--hsl);}
 .active_caf372{background:var(--gr)!important;}
 /* some discord stuff and other weird shit ig*/
-.menu_c1e9c4{background:var(--bg);border:2px solid var(--hsl-main);}
+.menu_c1e9c4{background:var(--bg);border:2px solid var(--hsl);}
 .checkmark__714a9{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
-:is(.root__49fc1, .container__8a031){background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
-[class^="vc-margin-"] .vc-btn-base.vc-btn-primary.vc-btn-medium{background:var(--gr)!important;border:1px solid #000;}
-[class^="vc-margin-"] .vc-btn-base.vc-btn-primary.vc-btn-medium:hover{border:1px solid var(--hsl-main);}
-[data-mana-component="button"][class="vc-btn-base vc-btn-primary vc-btn-medium"] {background:var(--gr)!important;border:1px solid #000;}
-[data-mana-component="button"][class="vc-btn-base vc-btn-primary vc-btn-medium"]:hover{border:1px solid var(--hsl-main);}
-.backgroundImages__4d7bb{display:none;}
+[class^="authedAppV2__"],[class^="friendRequestsButton_"]{background:#000!important;box-shadow:0 0 0 1px #222;}
+[class^="vc-margin-"]>.vc-btn-base.vc-btn-primary.vc-btn-medium:hover{border:1px solid var(--hsl);}
+[class^="vc-margin-"]>.vc-btn-base.vc-btn-primary.vc-btn-medium{background:var(--gr)!important;border:1px solid #000;}
+[data-mana-component="button"][class="vc-btn-base vc-btn-primary vc-btn-medium"]:hover{border:1px solid var(--hsl);}
+[data-mana-component="button"][class="vc-btn-base vc-btn-primary vc-btn-medium"]{background:var(--gr)!important;border:1px solid #000;}
+:is(.radioGroupOption__64e61,.standaloneRadioIndicator__64e61)[data-selected] :is(.outerRadioBase__64e61,.outerRadioFill__64e61){fill:var(--hsl);stroke:none;}
+:is(.radioGroupOption__64e61,.standaloneRadioIndicator__64e61)[data-selected]:not([data-disabled]):hover :is(.outerRadioBase__64e61,.outerRadioFill__64e61){fill:none;stroke:var(--hsl);}
+.container__9293f.themed__9293f,.resizeHandle__01ae2,.layer__960e4,.wrapper_cb9592,.tree_ef3116,.aside_f58343,.privateChannels_e6b769,.channelChatWrapper_cb9592,.contentSection_b6bcee,[class^="connection__"],[class^="nowPlayingColumn"]{background:#0000!important;}
+:is(.container__9a337, .container_faa96b),.bar__84522,.replyBar__841c8,.upload_aa605f,.file__0ccae,.embedFull__623de,.wrapperAudio_cf09d8,.container__5a2df,.gradient_e9ef78,.sidebarContent_db0ccb,.clipBadgeIcon__8c88a{background:#000!important;}
+.top_aa8da2 .item_aa8da2.selected_aa8da2,.top_aa8da2 .item_aa8da2:hover{--selected-tab-item-color:var(--hsl);color:var(--interactive-text-active);background-color:#0000;}
+.container__01ae2.floating__01ae2,.container__01ae2{background:transparent;border:none;border-bottom-left-radius:0;}
+:is(.root__49fc1,.container__8a031),.header_f369db,.container__551b0{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.background__7449f :is(.scrollerBase__99f8c, .scrollerBase_d125d2),.searchResultsWrap_a98f3b,.container_f369db,.progressContainer__0d0f9{background:hsl(from var(--bg)h s l/calc(var(--shading) * 0.3));border:none;}
+.divider__908e2.hasContent__908e2,.content__908e2{border-color:#000;background:#0000;}
+.member__5d473{background:transparent;backface-visibility:hidden;}
 .sprite__04eed{background:var(--text-muted)!important;}
-.game_cc46f0{background:#FFFFFF08!Important;border:none;}
-.perkCard_b62c4e{background:#FFFFFF08!Important;border:none;}
-.border__2f4f7[style*="var(--status-speaking)"],.avatar__07f91[style*="var(--status-speaking)"]{box-shadow: inset 0 0 0 2px var(--hsl-main)!Important;}
-.preview__5d148,.preview__3e443{background:var(--image) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attachment);filter:var(--bg-filter);box-shadow:0 0 0 2px var(--hsl-main);}
-.wrapper__4d7bb{background:var(--bg);box-shadow:0 0 0 2px var(--hsl-main);}
-.gradient__8e08c{background:var(--bg);box-shadow:0 0 0 2px var(--hsl-main);}
-.container_cd0f26{background:var(--bg);box-shadow:0 0 0 2px var(--hsl-main);}
-.card_ac86f6{background:var(--bg);box-shadow:0 0 0 2px var(--hsl-main);}
+.game_cc46f0,.perkCard_b62c4e,.perkCard_e6430c,.container_a76561{background:#0005!Important;}
+.border__2f4f7[style*="var(--status-speaking)"],.avatar__07f91[style*="var(--status-speaking)"],.avatarBorder__44b0c[style*="var(--status-speaking)"]{box-shadow:inset 0 0 0 2px var(--hsl)!Important;}
+.preview__5d148,.preview__3e443{background:var(--image,#000) var(--bg-pos) / var(--bg-size) no-repeat;background-attachment:var(--bg-attachment);filter:var(--bg-filter);box-shadow:0 0 0 2px var(--hsl);}
+.chatLayerWrapper__01ae2{background:var(--image-bg);background-attachment:var(--bg-attachment);filter:var(--bg-filter);}
+.wrapper__4d7bb,.gradient__8e08c,.container_cd0f26,.card_ac86f6{background:var(--bg);box-shadow:0 0 0 2px var(--hsl);}
 .numberBadge__2b1f5,.textBadge__2b1f5{box-shadow:none!important;}
 .fakeEdges_b26b79:before,.fakeEdges_b26b79:after{content: unset;}
-.mediaBarWrapper_b26b79,.mediaBarProgress_b26b79{border-radius: 3px;}
-.switchIndicator_a28278:not([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:var(--hsl-main)!Important;}
-.switchIndicator_a28278:is([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:hsl(from var(--hsl-main)h s l/0.2)!Important;}
-.searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl-main);}
-.headingCard__50a54{background:var(--bg)!Important;border:none;box-shadow:0 0 0 2px var(--hsl-main);}
-.tabBar__133bf .addFriend__133bf.addFriend__133bf.addFriend__133bf{background-color:hsl(from var(--hsl-main)h s l/1);color:var(--text-subtle);border:none;}
-:is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb,:is(:is(.auto__99f8c, .auto_d125d2),:is(.thin__99f8c, .thin_d125d2))::-webkit-scrollbar-thumb:active{background-color:var(--hsl-main);}
-.custom-user-profile-theme::-webkit-scrollbar-thumb,.scrollableContainer__74017::-webkit-scrollbar-thumb{background-color:var(--hsl-main);}
-/* testing stuff; gonna fix it at some point ig.... can't be bothered rn; */
-@container style(--background-off: 1){.sk_theme{}*{background:none!important;background-color:transparent!important;}}* * * * *{color:var(--leave-this-empty);}
-@container style(--see-style-attributes: 1){.sk_theme{}:hover::after{content:attr(style);box-shadow:0 0 3px 0 #000;z-index:9999;color:#000!important;background:aliceblue!important;font-family:Arial,sans-serif;font-size:1rem;font-weight:normal;opacity:0.7;pointer-events:none;position:absolute;}}
-@container style(--where-are-my-textures: 1){.sk_theme{}:is(.root_bfe55a,.container__5e434 *),:is(html,body,.appMount_51fd7){
---error-gradient:repeating-conic-gradient(black 0% 25%,magenta 0% 50%) 50% / 30px 30px;background:var(--error-gradient);&.sk_theme{}:is(::before,::after),
-.thin_b1c063::-webkit-scrollbar-track,.thin_b1c063::-webkit-scrollbar-thumb,.auto__020ac::-webkit-scrollbar-track,.auto__020ac::-webkit-scrollbar-thumb{background: var(--error-gradient);}}}
+.mediaBarWrapper_b26b79,.mediaBarProgress_b26b79{border-radius:3px;}
+.switchIndicator_a28278:not([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:var(--hsl)!Important;}
+.switchIndicator_a28278:is([style*="background-color: rgba(0, 0, 0, 0.12)"]){background:hsl(from var(--hsl)h s l/0.2)!Important;}
+.searchBar_c322aa{background:transparent;}.searchBar_c322aa:focus-within{background:var(--bg);border:none;box-shadow:0 0 0 2px var(--hsl);}
+.headingCard__50a54{background:var(--bg)!Important;border:none;box-shadow:0 0 0 2px var(--hsl);}
+.tabBar__133bf>.addFriend__133bf.addFriend__133bf.addFriend__133bf{background-color:hsl(from var(--hsl)h s l/1);color:var(--text-subtle);border:none;}
+:is(:is(.auto__99f8c,.auto_d125d2),:is(.thin__99f8c,.thin_d125d2))::-webkit-scrollbar-thumb,:is(:is(.auto__99f8c,.auto_d125d2),:is(.thin__99f8c,.thin_d125d2))::-webkit-scrollbar-thumb:active{background-color:var(--hsl);}
+.custom-user-profile-theme::-webkit-scrollbar-thumb,.scrollableContainer__74017::-webkit-scrollbar-thumb{background-color:var(--hsl);}
+.childWrapper__6e9f8 img[alt="App Icon"]{content:url("data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAACMuAAAjLgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AIAA/wCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMgAZQDjAHIA+QB9AP8AgAD/AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wCAAP8AgAD/AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAugBdA+EAcCz6AH4q/wCBDP8AgAD/AIAA/wCAAAAAAAAAAAAAAAAAAAAAAAD/AIsB/wCCFf8A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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////////////////8P4///AeP//wHh///AQfH/4EAB//gAA//wAAP/wAAP/4AAf/+AwD//gcAf/4HgD/+B4Af/wOAD/+AwAf/wECD/8Bhw//wceP///nx///9/////////////////////////////////8=");object-fit:contain;width:48px;height:48px;}
+/* testing stuff; gonna fix it at some point ig.... can't be bothered rn; */:is([data-text-variant^="text-md/"]){color:var(--channel-text-color);}
+@container style(--where-are-my-textures: 1){.sk_theme{}:is(html,body,#app-mount),:is([class^="container__"] *){background:repeating-conic-gradient(black 0% 25%,magenta 0% 50%) 50% / 30px 30px!important;}}
+@container style(--see-content-style-attributes: 1){.sk_theme{}:hover::after{content:attr(style);box-shadow:0 0 3px 0 #000;z-index:9999;color:#000!important;background:#fff!important;font-family:Arial,sans-serif;font-size:1rem;font-weight:normal;opacity:0.7;pointer-events:none;position:absolute;}}
 /* add your css down here;: or somewhere else; idc.... */
