@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-iconf" href="https://sk3artemis.github.io/b/icon.png">
     <title id="titleText">File Index of /</title>
     <style>
         * {box-sizing: border-box;}
@@ -10,8 +11,8 @@
         button {border: 1px solid #4a4a4a; background: #333; color: #eee;cursor: pointer; font-size: 13px;}
         button:hover {background: #414141;}
         button:disabled {opacity: 0.4; cursor: default;}
-        .breadcrumb {border: 0; background: transparent; color: #bbb;}
-        .breadcrumb:hover {color: white; background: #333;}
+        .pathIndex {border: 0; background: transparent; color: #bbb;}
+        .pathIndex:hover {color: white; background: #333;}
         .separator {color: #666;}
         .search input:focus {border-color: #777;}
         .type {color: #888; font-size: 12px; padding-left: 20px;}
@@ -25,10 +26,12 @@
 </head>
 <body>
 <div class="browser" style="background: #222; border: 1px solid #444; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);">
-    <div class="titlebar" style="height:46px;display:flex;align-items:center;padding:0 15px;background:#2b2b2b;border-bottom:1px solid #444;font-size:13px;font-weight:bold;"><span id="status">Connecting....</span></div>
+    <div class="titlebar" style="height:46px;display:flex;align-items:center;padding:0 15px;background:#2b2b2b;border-bottom:1px solid #444;font-size:13px;font-weight:bold;">
+		<span id="status" style="font-size: 13px; font-weight: normal; color: #999;">Connecting....</span>
+	</div>
     <div style="display: flex; gap: 6px; padding: 8px; background: #262626; border-bottom: 1px solid #3b3b3b;">
         <button id="backButton" disabled>Back</button>
-        <button id="rootButton">Root</button>
+        <button onclick="loadDir("");">Root</button>
         <button id="refreshButton">Refresh</button>
     </div>
     <div id="pathIndex" style="display: flex; align-items: center; gap: 4px; min-height: 40px; padding: 6px 10px; background: #202020; border-bottom: 1px solid #3b3b3b; overflow-x: auto; white-space: nowrap;"></div>
@@ -36,12 +39,12 @@
 		<input id="searchInput" type="text" placeholder="Search...." autocomplete="off" style="width: 100%; padding: 8px 10px; border: 1px solid #444; outline: none; background: #181818; color: white;">
 	</div>
     <div id="fileList" style="flex: 1; overflow-y: auto; position: relative;">
-        <div class="loading">Loading repository....</div>
+        <div class="loading">Loading Repository....</div>
     </div>
 </div>
 <script>
 "use strict";
-const CONFIG = {
+const cfg = {
     downloadProxy : "https://sk3artemis.github.io/DownGit/#/home",
     branch: null,
     cacheResults: true
@@ -59,11 +62,11 @@ const status = document.getElementById("status");
 const refreshButton = document.getElementById("refreshButton");
 const rootButton = document.getElementById("rootButton");
 
-function detectRepository() {
+function findRepo() {
     const hostname = window.location.hostname;
     const pathname = window.location.pathname;
     if (!hostname.endsWith(".github.io")) {
-        throw new Error("Could not determine the GitHub repository from this URL. If you are using a custom domain, configure owner and repository in detectRepository()");
+        throw new Error("Could not Find GitHub Repository from this URL");
     }
     owner = hostname.substring(0, hostname.length - ".github.io".length);
     const parts = pathname.split("/").filter(Boolean);
@@ -77,9 +80,7 @@ function detectRepository() {
 async function githubRequest(path) {
     const encodedPath = path.split("/").map(part => encodeURIComponent(part)).join("/");
     let url = `https://api.github.com/repos/` + `${encodeURIComponent(owner)}/` + `${encodeURIComponent(repository)}/` + `contents/${encodedPath}`;
-    if (branch) {
-        url += `?ref=${encodeURIComponent(branch)}`;
-    }
+    if (branch) { url += `?ref=${encodeURIComponent(branch)}`; }
     const response = await fetch(url, {
 		headers: {"Accept" : "application/vnd.github+json"}
 	});
@@ -91,29 +92,24 @@ async function githubRequest(path) {
         } catch {
             message = response.statusText;
         }
-        throw new Error(`GitHub API Error ` + `${response.status}: ${message}`
-        );
+        throw new Error(`GitHub API Error ` + `${response.status}: ${message}`);
     }
     return response.json();
 }
 
-async function loadRepositoryInfo() {
+async function fetchRepo() {
     const url = `https://api.github.com/repos/` + `${encodeURIComponent(owner)}/` + `${encodeURIComponent(repository)}`;
     const response = await fetch(url, {
 		headers: {"Accept" : "application/vnd.github+json"}
 	});
-    if (!response.ok) {
-        throw new Error(`Repository "${owner}/${repository}" ` + `Not Found`);
-    }
+    if (!response.ok) { throw new Error(`Repository "${owner}/${repository}" ` + `Not Found`); }
     const data = await response.json();
-    if (!branch) {
-        branch = data.default_branch;
-    }
+    if (!branch) { branch = data.default_branch; }
     status.textContent = `${owner}/${repository}/${branch}`;
 }
 
 const backButton = document.getElementById("backButton");
-async function loadDirectory(path = "", forceRefresh = false) {
+async function loadDir(path = "", forceRefresh = false) {
     currentPath = path;
 	updateTitle();
     selectedEntry = null;
@@ -121,46 +117,34 @@ async function loadDirectory(path = "", forceRefresh = false) {
     try {
         const cacheKey = `${branch}:${path}`;
         let entries;
-        if (CONFIG.cacheResults && !forceRefresh && cache.has(cacheKey)) {
+        if (cfg.cacheResults && !forceRefresh && cache.has(cacheKey)) {
             entries = cache.get(cacheKey);
         } else {
             entries = await githubRequest(path);
-            if (!Array.isArray(entries)) {
-                entries = [entries];
-            }
-            if (CONFIG.cacheResults) {
-                cache.set(cacheKey, entries);
-            }
+            if (!Array.isArray(entries)) { entries = [entries]; }
+            if (cfg.cacheResults) { cache.set(cacheKey, entries); }
         }
         entries.sort((a, b) => {
-            if (a.type === "dir" && b.type !== "dir") {
-                return -1;
-            }
-            if (a.type !== "dir" && b.type === "dir") {
-                return 1;
-            }
+            if (a.type === "dir" && b.type !== "dir") { return -1; }
+            if (a.type !== "dir" && b.type === "dir") { return 1; }
             return a.name.localeCompare(b.name, undefined, {numeric: true, sensitivity: "base"});
         });
         currentEntries = entries;
+		if (currentPath === "") {
+			entries = entries.filter(entry => entry.name.toLowerCase() !== "index.html");
+		}
         renderDirectory(entries);
-        renderBreadcrumbs();
+        renderPathIndex();
         backButton.disabled = currentPath === "";
     } catch (error) {
-        renderError(error.message);
+		fileList.innerHTML = `<div class="error">${escapeHtml(error.message)}</div>`;
         console.error(error);
     }
 }
 
-function renderError(message) {
-    fileList.innerHTML = `<div class="error">${escapeHtml(message)}</div>`;
-}
-
 function renderDirectory(entries) {
     fileList.innerHTML = "";
-    if (entries.length === 0) {
-        fileList.innerHTML = `<div class="empty">This Folder is Empty</div>`;
-        return;
-    }
+    if (entries.length === 0) { fileList.innerHTML = `<div class="empty">This Folder is Empty</div>`; return; }
     for (const entry of entries) {
         const element = document.createElement("div");
         element.className = "entry";
@@ -173,37 +157,28 @@ function renderDirectory(entries) {
 		`;
         const downloadButton = element.querySelector(".download");
         downloadButton.addEventListener("click", event => {
-                event.stopPropagation();
-                downloadEntry(entry);
-            }
-        );
+			event.stopPropagation();
+			downloadEntry(entry);
+		});
         element.addEventListener("dblclick", () => {
-                if (entry.type === "dir") {
-                    loadDirectory(entry.path);
-                } else {
-                    selectEntry(entry);
-                }
-            }
-        );
+			if (entry.type === "dir") { loadDir(entry.path); } else { selectEntry(entry); }
+		});
         element.addEventListener("click", () => {
-                selectEntry(entry);
-            }
-        );
+			selectEntry(entry);
+		});
         fileList.appendChild(element);
     }
     applySearch();
 }
 
-function renderBreadcrumbs() {
+function renderPathIndex() {
     pathIndex.innerHTML = "";
     const root = document.createElement("button");
-    root.className = "breadcrumb";
+    root.className = "pathIndex";
     root.textContent = "Root";
-    root.addEventListener("click", () => loadDirectory(""));
+    root.addEventListener("click", () => loadDir(""));
     pathIndex.appendChild(root);
-    if (!currentPath) {
-        return;
-    }
+    if (!currentPath) { return; }
     const parts = currentPath.split("/").filter(Boolean);
     let accumulated = "";
     parts.forEach(part => {
@@ -214,9 +189,9 @@ function renderBreadcrumbs() {
         accumulated += (accumulated ? "/" : "") + part;
         const path = accumulated;
         const button = document.createElement("button");
-        button.className = "breadcrumb";
+        button.className = "pathIndex";
         button.textContent = part;
-        button.addEventListener("click", () => loadDirectory(path));
+        button.addEventListener("click", () => loadDir(path));
         pathIndex.appendChild(button);
     });
 }
@@ -229,17 +204,14 @@ function selectEntry(entry) {
 }
 
 function downloadEntry(entry) {
-    if (!entry.html_url) {
-        alert("URL Not Provided");
-        return;
-    }
+    if (!entry.html_url) { alert("URL Not Provided"); return; }
     if (entry.type === "file") {
         const rawUrl = "https://github.com/" + encodeURIComponent(owner) + "/" + encodeURIComponent(repository) + "/raw/" + encodeURIComponent(branch) + "/" + entry.path.split("/").map(part => encodeURIComponent(part)).join("/");
         window.open(rawUrl, "_blank", "noopener,noreferrer");
         return;
     }
     const rootDirectory = entry.name;
-    const downloadUrl = CONFIG.downloadProxy + "?url=" + encodeURIComponent(entry.html_url) + "&fileName=" + encodeURIComponent(entry.name) + "&rootDirectory=" + encodeURIComponent(rootDirectory);
+    const downloadUrl = cfg.downloadProxy + "?url=" + encodeURIComponent(entry.html_url) + "&fileName=" + encodeURIComponent(entry.name) + "&rootDirectory=" + encodeURIComponent(rootDirectory);
     window.open(downloadUrl, "_blank", "noopener,noreferrer");
 }
 
@@ -248,36 +220,25 @@ searchInput.addEventListener("input", applySearch);
 function applySearch() {
     const query = searchInput.value.trim().toLowerCase();
     document.querySelectorAll(".entry").forEach(element => {
-            const name = element.querySelector(".name").textContent.toLowerCase();
-            element.style.display = !query || name.includes(query) ? "" : "none";
+		const name = element.querySelector(".name").textContent.toLowerCase();
+		element.style.display = !query || name.includes(query) ? "" : "none";
 	});
 }
 
 backButton.addEventListener("click", () => {
-        if (!currentPath) {
-            return;
-        }
-        const parts = currentPath.split("/").filter(Boolean);
-        parts.pop();
-        loadDirectory(parts.join("/"));
-    }
-);
-
-rootButton.addEventListener("click", () => {
-        loadDirectory("");
-    }
-);
+	if (!currentPath) { return; }
+	const parts = currentPath.split("/").filter(Boolean);
+	parts.pop();
+	loadDir(parts.join("/"));
+});
 
 refreshButton.addEventListener("click", () => {
-        cache.delete(`${branch}:${currentPath}`);
-        loadDirectory(currentPath, true);
-    }
-);
+	cache.delete(`${branch}:${currentPath}`);
+	loadDir(currentPath, true);
+});
 
 function formatFileSize(bytes) {
-    if (!bytes) {
-        return "";
-    }
+    if (!bytes) { return ""; }
     const units = ["B", "KB", "MB", "GB"];
     let size = bytes;
     let unit = 0;
@@ -294,21 +255,18 @@ function escapeHtml(value) {
 
 function updateTitle() {
     const titleText = document.getElementById("titleText");
-    if (!currentPath) {
-        titleText.textContent = "File Index of /";
-        return;
-    }
+    if (!currentPath) { titleText.textContent = "File Index of /"; return; }
     titleText.textContent = `File Index of /${currentPath.replace(/^\/+|\/+$/g, "")}/`;
 }
 
 async function initialize() {
     try {
-        detectRepository();
+        findRepo();
         status.textContent = `${owner}/${repository}`;
-        await loadRepositoryInfo();
-        await loadDirectory("");
+        await fetchRepo();
+        await loadDir("");
     } catch (error) {
-        renderError(error.message);
+        fileList.innerHTML = `<div class="error">${escapeHtml(error.message)}</div>`;
         status.textContent = "Error";
         console.error(error);
     }
