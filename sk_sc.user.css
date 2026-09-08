@@ -5,11 +5,11 @@
 @description  Interesting....
 @version      2.0.2
 @license      NONE
-@updateURL https://raw.githubusercontent.com/SK3Artemis/s-test/refs/heads/main/sk_sc.user.css
+@updateURL https://raw.githubusercontent.com/SK3Artemis/storage/refs/heads/storage/themes/sk_sc.user.css
 @advanced       color col "Color" #7200FF
 @advanced       dropdown bg "Background Image" {
-                    bg-low "LOW Quality Galaxy" <<<EOT https://sk3artemis.github.io/s-test/images/Untitled.png EOT;
-                    bg-high "HIGH Quality Galaxy" <<<EOT https://sk3artemis.github.io/s-test/images/562961.png EOT;
+                    bg-low "LOW Quality Galaxy" <<<EOT https://sk3artemis.github.io/storage/images/Untitled.png EOT;
+                    bg-high "HIGH Quality Galaxy" <<<EOT https://sk3artemis.github.io/storage/images/562961.png EOT;
                     bg-custom "Custom" <<<EOT /*[[custom-bg]]*\/ EOT;
 }
 @advanced       text custom-bg "Background Image (Custom)" "https://example.com/image.png"
